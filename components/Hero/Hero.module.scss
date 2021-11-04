@@ -1,0 +1,29 @@
+.hero {
+  text-align: center;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-header {
+  border: 1px solid green;
+  padding: 20px;
+  max-width: 650px;
+}
+
+.hero-title {
+}
+
+.hero-eyebrow {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 30px;
+}
+
+.hero-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
