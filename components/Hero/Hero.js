@@ -1,25 +1,27 @@
 import clsx from "clsx";
-import SocialMediaLinks from "../SocialMediaLinks";
+import dynamic from "next/dynamic";
+
 import styles from "./Hero.module.scss";
+import SocialMediaLinks from "../SocialMediaLinks";
+
+// Dynamic import to ensure this only renders on client (we need browser data for positioning)
+const DynamicHeroSvg = dynamic(() => import("./HeroSvg"), { ssr: false });
 
 export default ({ title = "", eyebrow = "", showSocial = true }) => {
   return (
     <div className={styles.hero}>
-      {/* HEADER */}
-      <div className={styles["hero-header"]}>
-        {/* EYEBROW  */}
-        <div className={styles["hero-eyebrow"]}>{eyebrow}</div>
+      {/* SEO TITLE (Invisible, text that renders is an SVG)  */}
+      <h2 className={clsx([styles["hero-title"], "sr-only"])}>{title}</h2>
 
-        {/* TITLE  */}
-        <h2 className={clsx([styles["hero-title"], "h1"])}>{title}</h2>
-      </div>
+      {/* SVG (Actual rendered markup of the hero) */}
+      <DynamicHeroSvg title={title} />
 
-      {/* SOCIAL MEDIA LINKS */}
-      {showSocial && (
+      {/* TODO: Add social to SVG */}
+      {/* {showSocial && (
         <div className={styles["hero-social"]}>
           <SocialMediaLinks />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

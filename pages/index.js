@@ -3,7 +3,7 @@ import Head from "next/head";
 
 // Components
 import Hero from "/components/Hero/Hero";
-import ProjectList from "components/ProjectList/ProjectList";
+import FeaturedProject from "components/FeaturedProject/FeaturedProject";
 
 // Utils
 import { getAllProjects } from "../utils/contentful";
@@ -41,7 +41,16 @@ export default function Home({ preview, allProjects }) {
         <Hero title="Front-End Developer" eyebrow="Zachary Schaffter" />
 
         {/* PROJECTS */}
-        <ProjectList projects={allProjects} />
+        <div className="project-list">
+          {allProjects.map((p, i) => (
+            <FeaturedProject
+              key={i}
+              project={p}
+              layout={i % 2 ? "left" : "right"}
+              style={i % 2 ? "dark" : "light"}
+            />
+          ))}
+        </div>
       </main>
 
       {/*

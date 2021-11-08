@@ -1,1 +1,6 @@
+// Note: This file is prepended to all stylsheets via the next config.
+// This file shouldn't contain any actual style declarations, or else
+// they're be duplicated.
+
 @import "./utils/breakpoints";
+@import "./utils/stretch-within";
