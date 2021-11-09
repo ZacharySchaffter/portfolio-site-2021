@@ -1,27 +1,56 @@
+$background-size-buffer: 500px;
+
 .hero {
-  text-align: center;
+  background: #ccc;
+  overflow: hidden;
+  position: relative;
   min-height: 90vh;
+}
+
+.hero-content {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ccc;
-  overflow: hidden;
-  position: relative; // SVG is absolutely stretched within this parent
+  flex-direction: column;
+  transform: scale(1.25);
+
+  &--normal {
+    position: relative;
+    min-height: 90vh;
+    height: 100%;
+    width: 100%;
+    background: {
+      image: url("/hero/hero-bg.svg");
+      repeat: no-repeat;
+      size: cover;
+    }
+  }
+  &--masked {
+    z-index: 10;
+    @include stretch-within;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    background-clip: text;
+    color: transparent;
+    mask: {
+      image: url("/hero/hero-bg-mask.svg");
+      repeat: no-repeat;
+      size: cover;
+    }
+    color: white;
+  }
 }
 
-.hero-header {
-  border: 1px solid blue;
-  padding: 20px;
+.hero-content__inner {
+  transform: scale(0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-
 .hero-title {
   position: relative;
-}
-
-.hero-title-glitch {
-  @include stretch-within;
-  font-size: inherit;
-  font-weight: inherit;
 }
 
 .hero-eyebrow {

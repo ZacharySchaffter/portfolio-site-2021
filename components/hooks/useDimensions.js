@@ -27,14 +27,18 @@ const useDimensions = () => {
     // Update node dimensions stored in state
     const updateSizing = () => {
       if (!node) return;
-      setDimensions(node.getBoundingClientRect().toJSON());
+      window.requestAnimationFrame(() =>
+        setDimensions(node.getBoundingClientRect().toJSON())
+      );
     };
     updateSizing(); // call one on initial load
 
     window.addEventListener("resize", updateSizing);
+    window.addEventListener("scroll", updateSizing);
 
     return () => {
       window.removeEventListener("resize", updateSizing);
+      window.removeEventListener("scroll", updateSizing);
     };
   }, [node]);
 
