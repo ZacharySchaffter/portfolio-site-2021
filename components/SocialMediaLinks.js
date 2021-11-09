@@ -1,40 +1,43 @@
-import Image from "next/image";
+import clsx from "clsx";
+import Icons from "./icons";
 
 const socialMedia = [
   {
-    name: "GitHub",
-    icon: null,
-    url: "github.com/zacharyschaffter",
-    description: "Where I store my code",
-  },
-  {
     name: "CodePen",
-    icon: null,
+    icon: Icons.CodePen,
     url: "codepen.com/zacharyschaffter",
-    description: "Where I tinker with code",
+    description: "My code scratch pad.",
   },
   {
-    name: "LinkedIn",
-    icon: null,
-    url: "linkedin.com/zacharyschaffter",
-    description: "Where I 'network', or whatever",
+    name: "GitHub",
+    icon: Icons.GitHub,
+    url: "github.com/zacharyschaffter",
+    description: "Go ahead and creep on my code",
   },
   {
     name: "Shapeways",
-    icon: null,
+    icon: Icons.Shapeways,
     url: "shapeways.com/robozack",
-    description: "Where I have fun",
+    description: "Some of my 3D Prints",
   },
-].filter((sm) => {
-  sm.icon && sm.title && sm.url;
-});
+  {
+    name: "LinkedIn",
+    icon: Icons.LinkedIn,
+    url: "linkedin.com/zacharyschaffter",
+    description: "Where I 'network', or whatever",
+  },
+];
 
-export default (props) => (
-  <>
+export default ({ color, className }) => (
+  <div className={clsx("social-media", className)}>
     {socialMedia.map((sm) => (
-      <a href={sm.url} title={sm.description || sm.title}>
-        <img src={sm.url} alt={sm.title} />
+      <a
+        key={sm.name}
+        href={sm.url}
+        title={`${sm.name}${sm.description ? ` - ${sm.description}` : ""}`}
+      >
+        <sm.icon color={color} />
       </a>
     ))}
-  </>
+  </div>
 );

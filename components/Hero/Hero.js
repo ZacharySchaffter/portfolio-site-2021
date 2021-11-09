@@ -51,6 +51,9 @@ const getOffsetWithFalloff = (
 };
 
 export default ({ title = "", eyebrow = "", showSocial = true }) => {
+  // ==============
+  // STATE
+  // ==============
   const [{ x, y, width, height }, heroNode, assignHeroRef] = useDimensions();
   const [[mouseX, mouseY], setMouseCoords] = useState([0, 0]);
   const [[centerX, centerY], setCenterCoords] = useState([0, 0]);
@@ -60,23 +63,19 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
     setMouseCoords([e.pageX, e.pageY]);
   };
 
+  // ==============
   // LIFECYCLE
+  // ==============
+  // On initial mount, bind event handler.  Unbind on dismount
   useEffect(() => {
-    // On initial mount, bind event handler
     window.addEventListener("mousemove", handleMousemove);
-
     return () => {
       window.removeEventListener("mousemove", handleMousemove);
     };
   }, []);
 
+  // Anytime hero dimensions change, update the center coordinates
   useEffect(() => {
-    // Anytime hero dimensions change, update the center coordinates
-    console.log(
-      "Center coords: ",
-      [x + 0.5 * width, y + 0.5 * height],
-      [width, height, x, y]
-    );
     setCenterCoords([x + 0.5 * width, y + 0.5 * height]);
   }, [x, y, width, height]);
 
@@ -113,13 +112,18 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
             {/* TITLE */}
             <h2
               className={clsx([styles["hero-title"], "h1"])}
-              style={{ maxWidth: 600 }}
+              style={{
+                maxWidth: 600,
+              }}
             >
               {title}
             </h2>
 
             {/* SOCIAL */}
-            {showSocial && <div></div>}
+            <SocialMediaLinks
+              className={styles["hero-social"]}
+              color={type === "masked" ? "#FFF" : "#000"}
+            />
           </div>
         </div>
       ))}
