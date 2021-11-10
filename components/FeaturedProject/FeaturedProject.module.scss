@@ -61,10 +61,10 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
   position: relative;
   @include glitch-text(
     $foreground: $black,
-    $background: $white,
+    $background: transparentize(white, 0.9),
     $color1: $glitch1,
     $color2: $glitch2,
-    $offset: $glitch-offset
+    $offset: 10px
   );
 
   .project--style-dark & {

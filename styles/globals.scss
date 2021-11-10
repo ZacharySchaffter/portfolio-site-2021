@@ -21,10 +21,14 @@ a {
 }
 
 .bg-grain {
-  &::before {
+  overflow: hidden;
+  position: relative;
+
+  &::after {
     content: "";
+    position: absolute;
     @include stretch-within;
-    z-index: 10;
+    z-index: -1;
     width: 200vw;
     height: 200vh;
     top: -50%;
