@@ -66,8 +66,7 @@ export default function Home({ preview, projects }) {
 export async function getStaticProps({ preview = false }) {
   // Fetch all projects
   const projects = (await getProjectList(preview)) ?? [];
-  console.log(projects);
-  // Return
+
   return {
     props: { preview, projects },
   };
