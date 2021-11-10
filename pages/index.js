@@ -6,9 +6,9 @@ import Hero from "/components/Hero/Hero";
 import FeaturedProject from "components/FeaturedProject/FeaturedProject";
 
 // Utils
-import { getAllProjects } from "../utils/contentful";
+import { getProjectList } from "../utils/contentful";
 
-export default function Home({ preview, allProjects }) {
+export default function Home({ preview, projects }) {
   return (
     <div className="">
       {/*
@@ -42,7 +42,7 @@ export default function Home({ preview, allProjects }) {
 
         {/* PROJECTS */}
         <div className="project-list">
-          {allProjects.map((p, i) => (
+          {projects.map((p, i) => (
             <FeaturedProject
               key={i}
               project={p}
@@ -65,10 +65,10 @@ export default function Home({ preview, allProjects }) {
 
 export async function getStaticProps({ preview = false }) {
   // Fetch all projects
-  const allProjects = (await getAllProjects(preview)) ?? [];
-
+  const projects = (await getProjectList(preview)) ?? [];
+  console.log(projects);
   // Return
   return {
-    props: { preview, allProjects },
+    props: { preview, projects },
   };
 }
