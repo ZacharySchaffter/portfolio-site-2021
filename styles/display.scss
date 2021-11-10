@@ -1,0 +1,22 @@
+@import "./grid";
+@import "./utils/breakpoints";
+
+// Carved out of bootstrap 5, display utilities based on the grid breakpoints
+
+$display-values: inline, inline-block, block, grid, table, table-row, table-cell,
+  flex, inline-flex, none;
+
+// Loop over each breakpoint, and create a utility for each possible value
+@each $breakpoint in map-keys($grid-breakpoints) {
+  // Generate media query if needed
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    // Loop over each utility property
+    @each $value in $display-values {
+      .d#{$infix}-#{$value} {
+        display: $value;
+      }
+    }
+  }
+}
