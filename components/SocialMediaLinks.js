@@ -5,25 +5,25 @@ const socialMedia = [
   {
     name: "CodePen",
     icon: Icons.CodePen,
-    url: "codepen.com/zacharyschaffter",
+    url: "https://codepen.com/zacharyschaffter",
     description: "My code scratch pad.",
   },
   {
     name: "GitHub",
     icon: Icons.GitHub,
-    url: "github.com/zacharyschaffter",
+    url: "https://github.com/zacharyschaffter",
     description: "Go ahead and creep on my code",
   },
   {
     name: "Shapeways",
     icon: Icons.Shapeways,
-    url: "shapeways.com/robozack",
+    url: "https://shapeways.com/robozack",
     description: "Some of my 3D Prints",
   },
   {
     name: "LinkedIn",
     icon: Icons.LinkedIn,
-    url: "linkedin.com/zacharyschaffter",
+    url: "https://linkedin.com/zacharyschaffter",
     description: "Where I 'network', or whatever",
   },
 ];

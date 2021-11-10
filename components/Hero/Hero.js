@@ -99,10 +99,11 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
             styles["hero-content"],
             styles[`hero-content--${type}`],
           ])}
+          aria-hidden={type === "masked"}
           style={{
-            WebkitMaskPosition: `${offsetX}px ${offsetY}px`,
-            maskPosition: `${offsetX}px ${offsetY}px`,
-            backgroundPosition: `${offsetX}px ${offsetY}px`,
+            WebkitMaskPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
+            maskPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
+            backgroundPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
           }}
         >
           <div className={styles["hero-content__inner"]}>
@@ -112,6 +113,7 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
             {/* TITLE */}
             <h2
               className={clsx([styles["hero-title"], "h1"])}
+              data-text={title}
               style={{
                 maxWidth: 600,
               }}

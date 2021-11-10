@@ -17,7 +17,7 @@ export default function Home({ preview, allProjects }) {
       =========================
       */}
       <Head>
-        <title>Zachary Schaffter | UI Developer</title>
+        <title>Zachary Schaffter | Front-End Developer</title>
         {/* TODO: Replace with contentful */}
         <meta
           name="description"
@@ -46,8 +46,8 @@ export default function Home({ preview, allProjects }) {
             <FeaturedProject
               key={i}
               project={p}
-              layout={i % 2 ? "left" : "right"}
-              style={i % 2 ? "dark" : "light"}
+              layout={i % 2 ? "right" : "left"}
+              style={i % 2 ? "light" : "dark"}
             />
           ))}
         </div>

@@ -14,11 +14,13 @@
   &:after {
     content: attr(data-text);
     position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     background-color: $background;
     color: $foreground;
     animation-delay: 4s;
+    pointer-events: none;
     clip-path: polygon(
       0 0,
       0 0,
@@ -39,9 +41,9 @@
 }
 
 // Used for the :before pseudo
-$steps: 20;
+$steps: 25;
 $last-clip-path: none;
-$frequency: 0.5; // frequency of a glitch. 0-1, higher number = more often
+$frequency: 0.1; // frequency of a glitch. 0-1, higher number = more often
 
 @keyframes pseudoGlitch1 {
   @for $i from 0 through $steps {
@@ -49,7 +51,7 @@ $frequency: 0.5; // frequency of a glitch. 0-1, higher number = more often
     $y: percentage(random()); // y offset of clip bar
     $height: (0.5em * random()); // height of clip bar
     $bottom: calc(#{$y} + #{$height});
-    $keyframe-percent: percentage($i * (1 / $steps));
+    $keyframe-percent: percentage($i * (math.div(1, $steps)));
 
     // Check to see if this iteration should glitch, based
     // on our frequency
@@ -86,7 +88,7 @@ $frequency: 0.5; // frequency of a glitch. 0-1, higher number = more often
     $y: percentage(random()); // y offset of clip bar
     $height: (1em * random()); // height of clip bar
     $bottom: calc(#{$y} + #{$height});
-    $keyframe-percent: percentage($i * (1 / $steps));
+    $keyframe-percent: percentage($i * math.div(1, $steps));
 
     // Check to see if this iteration should glitch, based
     // on our frequency

@@ -1,0 +1,7 @@
+// Importing sass:math into modules was causing some grief,
+// so abstracting the divide method here
+@use 'sass:math';
+
+@function divide($numerator, $divisor) {
+  @return math.div($numerator, $divisor);
+}

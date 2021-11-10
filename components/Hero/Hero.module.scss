@@ -91,6 +91,16 @@ $background-size-buffer: 500px;
 }
 .hero-title {
   position: relative;
+
+  .hero-content--masked & {
+    @include glitch-text(
+      $background: $black,
+      $foreground: $white,
+      $color1: $glitch1,
+      $color2: $glitch2,
+      $offset: 5px
+    );
+  }
 }
 
 .hero-eyebrow {

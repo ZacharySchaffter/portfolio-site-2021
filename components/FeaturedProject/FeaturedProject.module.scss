@@ -1,2 +1,97 @@
+$border-width: 6px;
+
 .project {
+  color: $black;
+  padding: 20px + $border-width 0 20px;
+  position: relative;
+
+  @include media-breakpoint-up("md") {
+    padding: 50px + $border-width 0 50px;
+  }
+
+  // Pseudo gradient border
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: $border-width;
+    width: 100%;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to right, $glitch1, $glitch2);
+  }
+
+  // Dark layout
+  &--style-dark {
+    background: $black;
+    color: $white;
+  }
+}
+
+.project__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  align-items: center;
+  justify-content: space-between;
+
+  @include media-breakpoint-up("md") {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .project--layout-right & {
+    flex-direction: row-reverse;
+  }
+}
+
+.project__copy,
+.project__media {
+  @include media-breakpoint-up("md") {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+
+$glitch-offset: 5px;
+$glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obnoxious;
+
+.project__title {
+  position: relative;
+  @include glitch-text(
+    $foreground: $black,
+    $background: $white,
+    $color1: $glitch1,
+    $color2: $glitch2,
+    $offset: $glitch-offset
+  );
+
+  .project--style-dark & {
+    @include glitch-text(
+      $foreground: $white,
+      $background: $black,
+      $color1: $glitch1,
+      $color2: $glitch2,
+      $offset: $glitch-offset
+    );
+  }
+
+  // Stagger the glitch animations on the pseudo elements
+  $steps: 20;
+  @for $i from 1 to $steps {
+    .project:nth-child(#{$i}) & {
+      &:before,
+      &:after {
+        animation-duration: $glitch-anim-duration;
+        animation-delay: (1s * $i) + (1s * ($i * (divide($i, $steps))));
+      }
+    }
+  }
+}
+
+.project__short-desc {
+}
+
+.project__media {
 }
