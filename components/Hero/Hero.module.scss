@@ -6,47 +6,6 @@ $background-size-buffer: 500px;
   position: relative;
   min-height: 90vh;
   background-image: radial-gradient(ellipse at center, transparent, #ccc);
-  &::before {
-    content: "";
-    @include stretch-within;
-    z-index: 10;
-    width: 200vw;
-    height: 200vh;
-    top: -50%;
-    left: -50%;
-    pointer-events: none;
-    animation: moveNoise 0.25s steps(5) infinite;
-    background: {
-      image: url("/noise.png");
-    }
-  }
-}
-
-@keyframes moveNoise {
-  20%,
-  39% {
-    transform: translate(0, 0);
-  }
-
-  40%,
-  59% {
-    transform: translate(-20px, -7px);
-  }
-
-  60%,
-  79% {
-    transform: translate(8px, 13px);
-  }
-
-  80%,
-  99% {
-    transform: translate(24px, -2px);
-  }
-
-  100%,
-  19% {
-    transform: translate(17px, 25px);
-  }
 }
 
 .hero-content {

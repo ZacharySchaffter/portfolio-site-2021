@@ -87,7 +87,7 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
   );
 
   return (
-    <div ref={assignHeroRef} className={styles.hero}>
+    <div ref={assignHeroRef} className={clsx(styles.hero, "bg-grain")}>
       {/* SEO TITLE (Invisible, text that renders is an SVG)  */}
       <h2 className={clsx([styles["hero-title"], "sr-only"])}>{title}</h2>
 
