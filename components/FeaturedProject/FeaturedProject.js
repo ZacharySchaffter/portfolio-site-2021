@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import styles from "./FeaturedProject.module.scss";
 
+import SmartImage from "components/SmartImage";
+
 export default ({ project, style = "dark", layout = "left" }) => {
   const roles = project?.projectRoles || [];
   const mediaDesktop = project?.featuredMedia?.fields;
@@ -44,21 +46,21 @@ export default ({ project, style = "dark", layout = "left" }) => {
         </div>
 
         {/* MEDIA */}
-        <div className="project__media">
+        <a href={project.url} className={clsx(styles["project__media"])}>
           {/* MEDIA MOBILE */}
-          <img
+          {/* <SmartImage
             className={clsx({ "d-md-none": mediaDesktop?.file?.url })}
             src={mediaMobile?.file?.url}
             alt={mediaMobile?.title || project.title}
-          />
+          /> */}
 
           {/* MEDIA DESKTOP */}
-          <img
-            className={clsx({ "d-none d-md-block": mediaMobile?.file?.url })}
+          <SmartImage
+            className={clsx({})}
             src={mediaDesktop?.file?.url}
             alt={mediaDesktop?.title || project.title}
           />
-        </div>
+        </a>
       </div>
     </div>
   );

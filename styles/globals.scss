@@ -21,6 +21,17 @@ a {
   box-sizing: border-box;
 }
 
+.list-unstyled {
+  list-style: none;
+  padding: unset;
+  margin: unset;
+  position: static;
+  display: inline-block;
+}
+
+// ============
+// Static Grain Background Effect
+// ============
 .bg-grain {
   overflow: hidden;
   position: relative;

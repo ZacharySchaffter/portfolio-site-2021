@@ -40,6 +40,9 @@
   }
 }
 
+// TODO: These animation declarations are being redundantly
+//  imported since they're not a SCSS var/function/mixin.
+
 // Used for the :before pseudo
 $steps: 25;
 $last-clip-path: none;
