@@ -26,11 +26,12 @@ button {
       color: $white;
     }
 
+    // Triple caret following the text.  On hover it animates
     &:after {
       content: ">>>";
       padding-left: 5px;
       position: relative;
-      top: -0.125em;
+      top: 0.8 * -0.25em;
       font-size: 0.8em;
       vertical-align: middle;
       color: currentColor;
@@ -41,12 +42,16 @@ button {
     &:before {
       content: "";
       background-image: $btn-gradient;
-      @include stretch-within;
+      position: absolute;
+      top: -1 * $btn-border-width;
+      right: -1 * $btn-border-width;
+      bottom: -1 * $btn-border-width;
+      left: -1 * $btn-border-width;
       clip-path: inset(0 100% 0 0);
       transform-origin: 0 50%;
       transition: clip-path 250ms ease;
       z-index: 0;
-      mix-blend-mode: screen;
+      mix-blend-mode: lighten;
       pointer-events: none;
     }
 
@@ -54,6 +59,32 @@ button {
       &:before {
         clip-path: inset(0 0 0 0);
       }
+
+      &:after {
+        animation: typein 1.5s infinite;
+      }
     }
+  }
+}
+
+@keyframes typein {
+  0%,
+  24% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  25%,
+  49% {
+    clip-path: inset(0 66% 0 0);
+  }
+
+  50%,
+  74% {
+    clip-path: inset(0 33% 0 0);
+  }
+
+  75%,
+  100% {
+    clip-path: inset(0 0 0 0);
   }
 }
