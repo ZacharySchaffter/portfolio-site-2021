@@ -43,6 +43,15 @@ export default ({ project, style = "dark", layout = "left" }) => {
           )}
 
           {/* LINK */}
+          {project.url && (
+            <a
+              href={project.url}
+              title={project.title}
+              className={clsx("btn", { "btn--light": style === "dark" })}
+            >
+              Visit
+            </a>
+          )}
         </div>
 
         {/* MEDIA */}

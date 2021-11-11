@@ -1,0 +1,62 @@
+$btn-gradient: linear-gradient(to right, $glitch1, $glitch2);
+$btn-border-width: 3px;
+
+a,
+button {
+  &.btn {
+    border-style: solid;
+    position: relative;
+    text-transform: uppercase;
+    border-width: $btn-border-width;
+    border-image-slice: 1;
+    border-image-source: $btn-gradient;
+    padding: 10px;
+    font-family: $font-family-monospace;
+    color: $black;
+    letter-spacing: 0.1em;
+    transition: color 150ms ease;
+
+    &--light {
+      color: $white;
+    }
+
+    &:hover,
+    &:focus {
+      color: $white;
+    }
+
+    &:after {
+      content: ">>>";
+      padding-left: 5px;
+      position: relative;
+      top: -0.125em;
+      font-size: 0.8em;
+      vertical-align: middle;
+      color: currentColor;
+      display: inline-block;
+    }
+
+    // Gradient Overlay
+    &:before {
+      content: "";
+      background-image: $btn-gradient;
+      @include stretch-within;
+      left: -0.1 * $btn-border-width;
+      top: -0.1 * $btn-border-width;
+      width: calc(100% + #{0.2 * $btn-border-width});
+      height: calc(100% + #{0.2 * $btn-border-width});
+      clip-path: inset(0 100% 0 0);
+      transform-origin: 0 50%;
+      transition: clip-path 250ms ease;
+      z-index: 0;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    &:hover {
+      &:before {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+  }
+}
