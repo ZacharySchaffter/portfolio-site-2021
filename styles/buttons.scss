@@ -26,7 +26,7 @@ button {
       color: $white;
     }
 
-    // Triple caret following the text.  On hover it animates
+    // Triple caret following the text.  On hover it animates as if being typed
     &:after {
       content: ">>>";
       padding-left: 5px;
@@ -55,7 +55,8 @@ button {
       pointer-events: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       &:before {
         clip-path: inset(0 0 0 0);
       }
