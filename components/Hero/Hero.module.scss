@@ -20,10 +20,17 @@ $background-size-buffer: 500px;
     min-height: 90vh;
     height: 100%;
     width: 100%;
-    background: {
-      image: url("/hero/hero-bg.svg");
-      repeat: no-repeat;
-      size: cover;
+
+    &:before {
+      content: "";
+      @include stretch-within;
+      filter: blur(var(--blur));
+      background: {
+        image: url("/hero/hero-bg.svg");
+        repeat: no-repeat;
+        size: cover;
+        position: calc(50% + var(--bg-offset-x)) calc(50% + var(--bg-offset-y));
+      }
     }
   }
   &--masked {
@@ -37,6 +44,7 @@ $background-size-buffer: 500px;
       image: url("/hero/hero-bg-mask.svg");
       repeat: no-repeat;
       size: cover;
+      position: calc(50% + var(--bg-offset-x)) calc(50% + var(--bg-offset-y));
     }
   }
 }
@@ -47,6 +55,7 @@ $background-size-buffer: 500px;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  filter: blur(var(--blur));
 }
 .hero-title {
   position: relative;

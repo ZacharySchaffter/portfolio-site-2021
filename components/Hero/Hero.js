@@ -87,7 +87,15 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
   );
 
   return (
-    <div ref={assignHeroRef} className={clsx(styles.hero, "bg-grain")}>
+    <div
+      ref={assignHeroRef}
+      className={clsx(styles.hero, "bg-grain")}
+      style={{
+        "--blur": "1px",
+        "--bg-offset-x": offsetX + "px",
+        "--bg-offset-y": offsetY + "px",
+      }}
+    >
       {/* SEO TITLE (Invisible, text that renders is an SVG)  */}
       <h2 className={clsx([styles["hero-title"], "sr-only"])}>{title}</h2>
 
@@ -100,11 +108,6 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
             styles[`hero-content--${type}`],
           ])}
           aria-hidden={type === "masked"}
-          style={{
-            WebkitMaskPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
-            maskPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
-            backgroundPosition: `calc(50% + ${offsetX}px) calc(50% + ${offsetY}px)`,
-          }}
         >
           <div className={styles["hero-content__inner"]}>
             {/* EYEBROW */}
