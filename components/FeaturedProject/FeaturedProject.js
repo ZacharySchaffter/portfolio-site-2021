@@ -29,13 +29,13 @@ export default ({ project, style = "dark", layout = "left" }) => {
           </h2>
 
           {/* SHORT DESCRIPTION  */}
-          <div className={styles["project__short-desc"]}>
+          <div className={clsx(styles["project__short-desc"], "ff-monospace")}>
             <p>{project.descriptionShort}</p>
           </div>
 
           {/* ROLES */}
           {roles && roles.length && (
-            <div className={styles["project__roles"]}>
+            <div className={clsx(styles["project__roles"], "ff-monospace")}>
               <span>{roles.length > 1 ? "Roles:" : "Role:"}</span>
 
               <ul className="list-unstyled">{roles.join(", ")}</ul>

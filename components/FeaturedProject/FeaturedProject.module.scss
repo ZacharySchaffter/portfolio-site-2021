@@ -132,7 +132,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     pointer-events: none;
 
     @include media-breakpoint-up("md") {
-      padding-bottom: 30vw;
+      padding-bottom: padding-bottom(divide(16, 9));
     }
   }
 

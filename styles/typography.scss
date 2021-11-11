@@ -1,6 +1,7 @@
 $font-size-base: 16px;
 $font-family-sans-serif: "Roboto", Helvetica, sans-serif;
 $font-family-monospace: "Roboto Mono", Helvetica, sans-serif;
+
 // =====================
 // Font Faces
 // =====================
@@ -46,7 +47,6 @@ h3,
 p {
   font-size: 18px;
   line-height: 21px;
-  font-family: $font-family-sans-serif;
 }
 
 // =====================
@@ -59,6 +59,16 @@ button {
 // =====================
 // Text Modifier Classes
 // =====================
+.ff {
+  &-sans-serif {
+    font-family: $font-family-sans-serif;
+  }
+
+  &-monospace {
+    font-family: $font-family-monospace;
+  }
+}
+
 .text {
   &-left {
     text-align: left !important;
