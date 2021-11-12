@@ -39,7 +39,7 @@ $bp-min: "md";
   padding-right: 20px;
   align-items: center;
   justify-content: space-around;
-  filter: blur(var(--v-offset-blur));
+  filter: blur(var(--v-offset-blur)) Grayscale(var(--v-offset-grayscale)); // Wonky capitalization to avoid SCSS grayscale() method
 
   @include media-breakpoint-up($bp-min) {
     display: flex;
@@ -73,6 +73,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
 .project__title {
   position: relative;
   margin-bottom: 15px;
+  filter: blur(0.75px);
   @include glitch-text(
     $foreground: $black,
     $background: transparentize(white, 0.9),
@@ -105,6 +106,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
 }
 
 .project__short-desc {
+  filter: blur(0.5px);
   p {
     letter-spacing: 0.05em;
     font-size: 15px;
@@ -113,6 +115,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
 }
 
 .project__roles {
+  filter: blur(0.5px);
   opacity: 0.4;
   font-size: 14px;
   margin-bottom: 20px;
@@ -149,15 +152,8 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     pointer-events: none;
   }
 
-  picture,
-  img {
-    filter: Grayscale(
-      var(--v-offset-grayscale)
-    ); // Wonky capitalization to avoid SCSS grayscale() method
+  .smart-image {
     @include stretch-within;
-    object-fit: cover;
-    object-position: top left;
-    display: block;
     height: 100%;
 
     @include media-breakpoint-up($bp-min) {
@@ -169,32 +165,48 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
         left: unset;
       }
     }
-  }
 
-  picture {
-    // Background color
+    // Background gradient behind images
     &:before {
       content: "";
-      position: absolute;
-      display: block;
-      z-index: 0;
-      height: 100%;
-      width: 100%;
+      @include stretch-within;
       background-image: linear-gradient(to bottom right, $glitch1, $glitch2);
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      top: 10px;
+      bottom: unset;
+      transform: translateY(var(--v-offset-bg));
 
-      // Right layout
-      .project--layout-left & {
-        left: -4px;
+      @include media-breakpoint-up($bp-min) {
+        .project--layout-left & {
+          right: unset;
+          left: -10px;
+        }
 
-        @include media-breakpoint-up($bp-min) {
-          top: -4px;
+        .project--layout-right & {
+          left: unset;
+          right: -10px;
         }
       }
-
-      .project--layout-right & {
-        right: -4px;
-        bottom: -4px;
-      }
     }
+  }
+  picture {
+    position: relative;
+    z-index: 1;
+    border: 1px solid $black;
+
+    .project--style-dark & {
+      border-color: $white;
+    }
+  }
+  picture,
+  img {
+    //@include stretch-within;
+    z-index: 1;
+    object-fit: cover;
+    object-position: top left;
+    display: block;
+    height: 100%;
   }
 }

@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import styles from "./FeaturedProject.module.scss";
-
 import SmartImage from "components/SmartImage";
 import { Parallax } from "components/Parallax";
+
+import { clamp } from "/utils";
 
 export default ({ project, style = "dark", layout = "left" }) => {
   const roles = project?.projectRoles || [];
@@ -28,6 +30,7 @@ export default ({ project, style = "dark", layout = "left" }) => {
                 "%",
               "--v-offset-blur":
                 2 * Math.min(1, Math.abs(center.percent)) + "px",
+              "--v-offset-bg": Math.min(center.percent, 1) * 30 + 10 + "px",
             }}
           >
             <div className={styles["project__inner"]}>
@@ -56,7 +59,7 @@ export default ({ project, style = "dark", layout = "left" }) => {
                   <div
                     className={clsx(styles["project__roles"], "ff-monospace")}
                   >
-                    <span class="sr-only">
+                    <span className="sr-only">
                       {roles.length > 1 ? "Roles:" : "Role:"}
                     </span>
 
@@ -87,7 +90,7 @@ export default ({ project, style = "dark", layout = "left" }) => {
 
                 {/* MEDIA DESKTOP */}
                 <SmartImage
-                  className={clsx({})}
+                  className={styles["smart-image"]}
                   src={mediaDesktop?.file?.url}
                   alt={mediaDesktop?.title || project.title}
                 />
