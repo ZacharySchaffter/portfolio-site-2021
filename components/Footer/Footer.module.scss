@@ -1,0 +1,25 @@
+$spacing: 8px;
+
+.footer {
+  padding: 50px 20px;
+  background-color: $black;
+}
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    width: 30px;
+    margin-left: $spacing / 2;
+    margin-right: $spacing / 2;
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

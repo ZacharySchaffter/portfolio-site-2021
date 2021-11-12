@@ -3,6 +3,7 @@ import Head from "next/head";
 
 // Components
 import { ParallaxProvider } from "/components/Parallax";
+import Footer from "/components/Footer/Footer";
 import Hero from "/components/Hero/Hero";
 import FeaturedProject from "components/FeaturedProject/FeaturedProject";
 
@@ -60,7 +61,7 @@ export default function Home({ preview, projects }) {
       FOOTER
       =========================
       */}
-        <footer className="">{/* TODO: Add footer */}</footer>
+        <Footer />
       </div>
     </ParallaxProvider>
   );
