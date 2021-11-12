@@ -1,13 +1,15 @@
 $border-width: 6px;
 $spacing-v-mobile: 20px;
-$spacing-v-desktop: 75px;
+$spacing-v-desktop: 120px;
+$bp-min: "md";
+
 .project {
   color: $black;
   padding: $spacing-v-mobile + $border-width 0 $spacing-v-mobile;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 
-  @include media-breakpoint-up("md") {
+  @include media-breakpoint-up($bp-min) {
     padding: $spacing-v-desktop + $border-width 0 $spacing-v-desktop;
   }
 
@@ -37,8 +39,9 @@ $spacing-v-desktop: 75px;
   padding-right: 20px;
   align-items: center;
   justify-content: space-around;
+  filter: blur(var(--v-offset-blur));
 
-  @include media-breakpoint-up("md") {
+  @include media-breakpoint-up($bp-min) {
     display: flex;
     flex-direction: row;
   }
@@ -49,14 +52,16 @@ $spacing-v-desktop: 75px;
 }
 
 .project__copy {
-  @include media-breakpoint-up("md") {
+  // transform: translateY(var(--v-offset-content));
+  @include media-breakpoint-up($bp-min) {
     flex-basis: 40%;
     max-width: 40%;
   }
 }
 
 .project__media {
-  @include media-breakpoint-up("md") {
+  // transform: translateY(var(--v-offset-media));
+  @include media-breakpoint-up($bp-min) {
     flex-basis: 40%;
     max-width: 40%;
   }
@@ -117,6 +122,17 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     text-transform: uppercase;
     margin-right: 4px;
   }
+
+  ul {
+    &:before {
+      content: "[";
+      font-size: 1.1em;
+    }
+    &:after {
+      content: "]";
+      font-size: 1.1em;
+    }
+  }
 }
 
 .project__media {
@@ -135,13 +151,16 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
 
   picture,
   img {
+    filter: Grayscale(
+      var(--v-offset-grayscale)
+    ); // Wonky capitalization to avoid SCSS grayscale() method
     @include stretch-within;
     object-fit: cover;
     object-position: top left;
     display: block;
     height: 100%;
 
-    @include media-breakpoint-up("md") {
+    @include media-breakpoint-up($bp-min) {
       .project--layout-left & {
         right: unset;
       }
@@ -167,7 +186,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       .project--layout-left & {
         left: -4px;
 
-        @include media-breakpoint-up("md") {
+        @include media-breakpoint-up($bp-min) {
           top: -4px;
         }
       }
