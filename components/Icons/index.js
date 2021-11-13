@@ -5,7 +5,6 @@ export const Logo = ({ color = "#000" }) => (
       fill={color}
       d="M14,24.87l-12.2-6L14,12.05v3.58L8.4,18.58,14,21.21Z"
     />
-
     <path
       stroke={color}
       strokeWidth={0.3}

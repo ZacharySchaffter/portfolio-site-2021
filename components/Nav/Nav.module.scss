@@ -1,3 +1,5 @@
+$color-shift-speed: 500ms;
+$color-shift-timing: ease;
 .site-nav {
   position: fixed;
   top: 0;
@@ -8,7 +10,7 @@
   justify-content: flex-end;
   align-items: center;
   font-family: "Roboto Mono", sans-serif;
-  transition: color 500ms ease;
+  transition: color $color-shift-speed $color-shift-timing;
   padding-left: 20px;
   padding-right: 20px;
 
@@ -37,26 +39,30 @@
 
       &:before,
       &:after {
+        display: inline-block;
         color: transparent;
+        position: relative;
+        opacity: 0;
+        background-image: linear-gradient(to bottom right, $glitch1, $glitch2);
+        background-clip: text;
+        transition: transform 1s ease, opacity 0.5s ease;
+        transform-origin: center center;
       }
       &:before {
         content: "[";
+        transform: translateX(4px);
       }
 
       &:after {
         content: "]";
+        transform: translateX(-4px);
       }
 
       &.active {
         &:before,
         &:after {
-          background-image: linear-gradient(
-            to bottom right,
-            $glitch1,
-            $glitch2
-          );
-          background-clip: text;
           opacity: 1;
+          transform: translateX(0);
         }
       }
 
@@ -73,4 +79,10 @@
 
 .site-nav__logo {
   width: 50px;
+
+  svg {
+    path {
+      transition: all $color-shift-speed $color-shift-timing;
+    }
+  }
 }

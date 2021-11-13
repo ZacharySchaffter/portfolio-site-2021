@@ -37,6 +37,7 @@ export default (props) => {
         direction === "up" ? entries[0] : entries[entries.length - 1];
 
       const node = entry.target;
+
       if (entry.isIntersecting && node.dataset.invertHeader === "true") {
         setInvert(true);
       } else {
@@ -45,9 +46,11 @@ export default (props) => {
     };
 
     // Update stored ref for subsequent renders
+    // Leave only a sliver (.1%) to intersect on, to limit the times
+    // multiple sections are 'intersecting' simultaneously
     observer = new IntersectionObserver(onIntersect, {
       threshold: 0,
-      rootMargin: "0px 0px -99% 0px",
+      rootMargin: "-0.9% 0px -99% 0px",
     });
 
     // Watch all nodes with [data-invert-header] attr
