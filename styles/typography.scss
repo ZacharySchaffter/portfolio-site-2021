@@ -22,16 +22,23 @@ h3,
 
 h1,
 .h1 {
-  font-size: 90px;
+  font-size: 60px;
   font-weight: 900;
   letter-spacing: 0.12em;
+
+  @include media-breakpoint-up("md") {
+    font-size: 90px;
+  }
 }
 
 h2,
 .h2 {
-  font-size: 72px;
+  font-size: 50px;
   font-weight: 700;
   letter-spacing: 0.12em;
+  @include media-breakpoint-up("md") {
+    font-size: 72px;
+  }
 }
 
 h3,

@@ -12,8 +12,8 @@ $spacing: 8px;
 
   a {
     width: 30px;
-    margin-left: $spacing / 2;
-    margin-right: $spacing / 2;
+    margin-left: divide($spacing, 2);
+    margin-right: divide($spacing, 2);
 
     &:first-child {
       margin-left: 0;

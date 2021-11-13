@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
 import clsx from "clsx";
 import styles from "./FeaturedProject.module.scss";
 import SmartImage from "components/SmartImage";
 import { Parallax } from "components/Parallax";
 
-import { clamp } from "/utils";
-
 export default ({ project, style = "dark", layout = "left" }) => {
   const roles = project?.projectRoles || [];
   const mediaDesktop = project?.featuredMedia?.fields;
-  const mediaMobile = project?.featuredMediaMobile?.fields;
+  // const mediaMobile = project?.featuredMediaMobile?.fields;
 
   return (
     <Parallax
       render={({ offset }) => {
         const { center } = offset;
-
         return (
           <div
             className={clsx(
@@ -72,7 +68,9 @@ export default ({ project, style = "dark", layout = "left" }) => {
                   <a
                     href={project.url}
                     title={project.title}
-                    className={clsx("btn", { "btn--light": style === "dark" })}
+                    className={clsx("btn", {
+                      "btn--light": style === "dark",
+                    })}
                   >
                     Visit
                   </a>

@@ -8,3 +8,5 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1400px,
 ) !default;
+
+$max-grid-width: map-get($grid-breakpoints, "xxl");

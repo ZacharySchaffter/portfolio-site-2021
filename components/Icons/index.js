@@ -1,3 +1,30 @@
+export const Logo = ({ color = "#000" }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    {/* Z */}
+    <path
+      fill={color}
+      d="M14,24.87l-12.2-6L14,12.05v3.58L8.4,18.58,14,21.21Z"
+    />
+
+    <path
+      stroke={color}
+      strokeWidth={0.3}
+      d="M2.84,6.91l10.92,5.18-.06,2.54L2.89,9.53,2.84,6.91m-.26-.4.06,3.18L13.94,15,14,11.94,2.58,6.51Z"
+    />
+
+    {/* Divider Line */}
+    <rect fill={color} x="15.83" y="9.7" width="0.53" height="16.87" />
+
+    {/* S */}
+    <path fill={color} d="M18,24.87V21.21l5.6-2.63L18,15.63V12.05l12.2,6.79Z" />
+    <path
+      stroke={color}
+      strokeWidth={0.3}
+      d="M29.16,6.91l-.05,2.62L18.3,14.63l-.06-2.54L29.16,6.91m.26-.4L18,11.94,18.06,15l11.3-5.33.06-3.18Z"
+    />
+  </svg>
+);
+
 export const GitHub = ({ color = "#000" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g id="GitHub">

@@ -1,0 +1,76 @@
+.site-nav {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: "Roboto Mono", sans-serif;
+  transition: color 500ms ease;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  nav {
+    ul {
+      display: flex;
+      align-items: flex-start;
+      text-transform: uppercase;
+    }
+    li {
+      margin-right: 10px;
+      flex: 1 0 auto;
+      position: relative;
+
+      &.active {
+        a {
+          background-image: linear-gradient(
+            to bottom right,
+            $glitch1,
+            $glitch2
+          );
+          background-clip: text;
+          color: transparent;
+        }
+      }
+
+      &:before,
+      &:after {
+        color: transparent;
+      }
+      &:before {
+        content: "[";
+      }
+
+      &:after {
+        content: "]";
+      }
+
+      &.active {
+        &:before,
+        &:after {
+          background-image: linear-gradient(
+            to bottom right,
+            $glitch1,
+            $glitch2
+          );
+          background-clip: text;
+          opacity: 1;
+        }
+      }
+
+      a {
+        position: relative;
+      }
+    }
+  }
+
+  &--inverted {
+    color: $white;
+  }
+}
+
+.site-nav__logo {
+  width: 50px;
+}

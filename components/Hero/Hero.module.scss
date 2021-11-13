@@ -1,4 +1,6 @@
 $background-size-buffer: 500px;
+$bp-min: "md";
+$bp-max: "sm";
 
 .hero {
   //background: #ccc;
@@ -59,6 +61,7 @@ $background-size-buffer: 500px;
 }
 .hero-title {
   position: relative;
+  text-align: center;
 
   .hero-content--masked & {
     @include glitch-text(

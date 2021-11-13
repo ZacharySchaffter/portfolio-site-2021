@@ -1,9 +1,4 @@
-// Next.js Components
-import Head from "next/head";
-
 // Components
-import { ParallaxProvider } from "/components/Parallax";
-import Footer from "/components/Footer/Footer";
 import Hero from "/components/Hero/Hero";
 import FeaturedProject from "components/FeaturedProject/FeaturedProject";
 
@@ -12,58 +7,28 @@ import { getProjectList } from "../utils/contentful";
 
 export default function Home({ preview, projects }) {
   return (
-    <ParallaxProvider>
-      <div className="">
-        {/*
-      =========================
-      HEAD
-      =========================
-      */}
-        <Head>
-          <title>Zachary Schaffter | Front-End Developer</title>
-          {/* TODO: Replace with contentful */}
-          <meta
-            name="description"
-            content="Creative Front-End Developer based in Seattle, WA"
-          />
+    <>
+      {/* SEO TITLE */}
+      <h1 className="sr-only">Zachary Schaffter | UI Developer</h1>
 
-          {/* TODO: Update */}
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        {/*
-      =========================
-      BODY
-      =========================
-      */}
-        <main className="">
-          {/* SEO TITLE */}
-          <h1 className="sr-only">Zachary Schaffter | UI Developer</h1>
-
-          {/* HERO */}
-          <Hero title="Front-End Developer" eyebrow="Zachary Schaffter" />
-
-          {/* PROJECTS */}
-          <div className="project-list">
-            {projects.map((p, i) => (
-              <FeaturedProject
-                key={i}
-                project={p}
-                layout={i % 2 ? "right" : "left"}
-                style={i % 2 ? "light" : "dark"}
-              />
-            ))}
-          </div>
-        </main>
-
-        {/*
-      =========================
-      FOOTER
-      =========================
-      */}
-        <Footer />
+      {/* HERO */}
+      <section data-invert-header="false">
+        <Hero title="Front-End Developer" eyebrow="Zachary Schaffter" />
+      </section>
+      {/* PROJECTS */}
+      <div className="project-list">
+        {projects.map((p, i) => (
+          <section data-invert-header={i % 2 === 0}>
+            <FeaturedProject
+              key={i}
+              project={p}
+              layout={i % 2 ? "right" : "left"}
+              style={i % 2 ? "light" : "dark"}
+            />
+          </section>
+        ))}
       </div>
-    </ParallaxProvider>
+    </>
   );
 }
 

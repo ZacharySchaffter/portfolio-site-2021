@@ -1,8 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import useDimensions from "/components/hooks/useDimensions";
-import usePrevious from "/components/hooks/usePrevious";
-import useFadingNumeric from "/components/hooks/useFadingNumeric";
-import throttle from "lodash.throttle";
 
 const ParallaxContext = createContext();
 
@@ -46,7 +43,7 @@ const ParallaxProvider = ({ children }) => {
 };
 
 // Render props component to inject additional data
-const Parallax = ({ render, children }) => {
+const Parallax = ({ render, children, ...props }) => {
   const [{ top, height }, node, assignNode] = useDimensions();
   const { scrollY, windowHeight } = useContext(ParallaxContext);
 
@@ -72,7 +69,7 @@ const Parallax = ({ render, children }) => {
   // If provided a render method, render it and pass along state.
   // Otherwise, render whatever children were provided.
   return (
-    <div ref={assignNode}>
+    <div ref={assignNode} {...props}>
       {render ? render({ offset, scrollY, windowHeight }) : children}
     </div>
   );
