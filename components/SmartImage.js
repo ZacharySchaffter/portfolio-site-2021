@@ -36,7 +36,7 @@ const SmartImage = ({
   alt = "",
   width,
   height,
-  layout = "responsive",
+  layout = "responsive", // 'responsive', 'static'
   breakpoints = defaultBreakpoints,
   className,
 }) => {
@@ -57,7 +57,7 @@ const SmartImage = ({
           <>
             {/* 'STATIC' PICTURE ELEMENT */}
             <source
-              srcset={optimizeSource({
+              srcSet={optimizeSource({
                 url: src,
                 width,
                 height,
@@ -66,7 +66,7 @@ const SmartImage = ({
               type="image/webp"
             />
             <source
-              srcset={optimizeSource({
+              srcSet={optimizeSource({
                 url: src,
                 width,
                 height,

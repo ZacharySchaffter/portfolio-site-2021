@@ -18,9 +18,8 @@ export default function Home({ preview, projects }) {
       {/* PROJECTS */}
       <div className="project-list">
         {projects.map((p, i) => (
-          <section data-invert-header={i % 2 === 0}>
+          <section key={i} data-invert-header={i % 2 === 0}>
             <FeaturedProject
-              key={i}
               project={p}
               layout={i % 2 ? "right" : "left"}
               style={i % 2 ? "light" : "dark"}
@@ -37,6 +36,6 @@ export async function getStaticProps({ preview = false }) {
   const projects = (await getProjectList(preview)) ?? [];
 
   return {
-    props: { preview, projects },
+    props: { preview, projects, background: "static", flush: true },
   };
 }

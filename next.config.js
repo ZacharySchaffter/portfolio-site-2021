@@ -7,7 +7,7 @@ module.exports = {
     // Import the following into all stylesheets automatically
     additionalData: `
       @import "utils";
-      @import "colors";
+      @import "variables";
     `,
   },
 };

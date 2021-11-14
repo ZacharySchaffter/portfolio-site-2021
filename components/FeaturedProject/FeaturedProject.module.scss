@@ -195,6 +195,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     position: relative;
     z-index: 1;
     border: 1px solid $black;
+    background-color: white;
 
     .project--style-dark & {
       border-color: $white;

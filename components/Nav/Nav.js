@@ -5,14 +5,12 @@ import { Logo } from "/components/icons";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
-export default (props) => {
-  const [invert, setInvert] = useState(false);
+export default ({ invert, setInvert }) => {
   const { pathname } = useRouter();
   const { current: observer } = useRef(null);
   const items = [
     { title: "Work", path: "/" },
     { title: "About", path: "/about" },
-    { title: "Contact", path: "/contact" },
   ];
 
   const initObserver = () => {

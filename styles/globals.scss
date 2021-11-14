@@ -34,10 +34,31 @@ a {
   display: inline-block;
 }
 
+$footer-height: 150px;
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+  min-height: 100vh;
+
+  &.flush {
+    padding-top: unset;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+}
+
 // ============
-// Static Grain Background Effect
+// Backgrounds
 // ============
-.bg-grain {
+
+.bg-black {
+  background-color: $black;
+}
+
+.bg-grain,
+.bg-static {
   overflow: hidden;
   position: relative;
 

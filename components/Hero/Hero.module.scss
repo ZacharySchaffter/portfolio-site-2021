@@ -57,9 +57,10 @@ $bp-max: "sm";
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  filter: blur(var(--blur));
 }
+
 .hero-title {
+  filter: blur(var(--blur));
   position: relative;
   text-align: center;
 
@@ -79,6 +80,7 @@ $bp-max: "sm";
   text-transform: uppercase;
   letter-spacing: 0.7em;
   margin-bottom: 30px;
+  filter: blur(var(--blur));
 }
 
 .hero-social {
@@ -86,6 +88,7 @@ $bp-max: "sm";
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  filter: blur(calc(0.65 * var(--blur)));
 
   a {
     width: 28px;

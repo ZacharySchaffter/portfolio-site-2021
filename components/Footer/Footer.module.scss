@@ -1,7 +1,7 @@
 $spacing: 8px;
 
 .footer {
-  padding: 50px 20px;
+  padding: 50px 20px 10px;
   background-color: $black;
 }
 
@@ -9,6 +9,7 @@ $spacing: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 
   a {
     width: 30px;
@@ -22,4 +23,11 @@ $spacing: 8px;
       margin-right: 0;
     }
   }
+}
+
+.footer__copyright {
+  font-size: 10px;
+  color: $white;
+  text-align: center;
+  padding: 4px 0;
 }

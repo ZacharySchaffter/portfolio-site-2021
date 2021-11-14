@@ -5,7 +5,7 @@ const socialMedia = [
   {
     name: "CodePen",
     icon: Icons.CodePen,
-    url: "https://codepen.com/zacharyschaffter",
+    url: "https://codepen.com/zschaffter",
     description: "My code scratch pad.",
   },
   {

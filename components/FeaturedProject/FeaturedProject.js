@@ -88,7 +88,7 @@ export default ({ project, style = "dark", layout = "left" }) => {
 
                 {/* MEDIA DESKTOP */}
                 <SmartImage
-                  className={styles["smart-image"]}
+                  className={clsx(styles["smart-image"])}
                   src={mediaDesktop?.file?.url}
                   alt={mediaDesktop?.title || project.title}
                 />

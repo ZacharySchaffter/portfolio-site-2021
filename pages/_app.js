@@ -3,9 +3,10 @@ import "styles/globals.scss";
 import Layout from "/components/Layout";
 
 function App({ Component, pageProps }) {
+  const { background, flush, ...staticPageProps } = pageProps;
   return (
-    <Layout>
-      <Component {...pageProps} />
+    <Layout background={background} flush={flush}>
+      <Component {...staticPageProps} />
     </Layout>
   );
 }

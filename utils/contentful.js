@@ -78,4 +78,21 @@ export async function getProjectList() {
   throw new Error("Error fetching project list.");
 }
 
+export async function getModelByHandle(handle) {
+  if (!handle) {
+    throw new Error("Handle is required.");
+  }
+
+  const entries = await client.getEntries({
+    fields: {
+      handle,
+    },
+  });
+  if (entries && entries.total && entries.items[0]) {
+    return entries.items[0];
+  }
+
+  throw new Error(`Error fetching model with handle: ${handle}`);
+}
+
 export default { getPage, getAllProjects };
