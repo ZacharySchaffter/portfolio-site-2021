@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 
-import useDimensions from "../hooks/useDimensions";
+import useDimensions from "components/hooks/useDimensions";
 
 import styles from "./Hero.module.scss";
-import SocialMediaLinks from "../SocialMediaLinks";
+import SocialMediaLinks from "components/SocialMediaLinks";
 
 /**
  *

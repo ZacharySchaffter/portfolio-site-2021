@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styles from "./Nav.module.scss";
 import { useRouter } from "next/router";
-import { Logo } from "components/icons";
+import { Logo } from "components/Icons";
 import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default ({ invert, setInvert }) => {
   const { pathname } = useRouter();

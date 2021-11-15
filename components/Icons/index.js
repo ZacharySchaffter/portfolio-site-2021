@@ -97,6 +97,7 @@ export const LinkedIn = ({ color }) => (
 );
 
 export default {
+  Logo,
   CodePen,
   GitHub,
   LinkedIn,

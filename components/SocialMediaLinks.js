@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Icons from "./icons";
+import * as Icons from "components/Icons";
 
 const socialMedia = [
   {
