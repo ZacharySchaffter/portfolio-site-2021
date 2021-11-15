@@ -35,7 +35,7 @@ export default ({
         <meta name="description" content={metaDesc} />
 
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
       </Head>
 
       <ParallaxProvider>
