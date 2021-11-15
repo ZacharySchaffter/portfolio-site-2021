@@ -1,7 +1,8 @@
 $border-width: 6px;
-$spacing-v-mobile: 20px;
+$spacing-v-mobile: 80px;
 $spacing-v-desktop: 120px;
 $bp-min: "md";
+$bp-max: "sm";
 
 .project {
   color: $black;
@@ -39,11 +40,11 @@ $bp-min: "md";
   padding-right: 20px;
   align-items: center;
   justify-content: space-around;
-  filter: blur(var(--v-offset-blur)) Grayscale(var(--v-offset-grayscale)); // Wonky capitalization to avoid SCSS grayscale() method
 
   @include media-breakpoint-up($bp-min) {
     display: flex;
     flex-direction: row;
+    filter: blur(var(--v-offset-blur)) Grayscale(var(--v-offset-grayscale)); // Wonky capitalization to avoid SCSS grayscale() method
   }
 
   .project--layout-right & {
@@ -51,7 +52,8 @@ $bp-min: "md";
   }
 }
 
-.project__copy {
+.project__copy,
+.project__media {
   // transform: translateY(var(--v-offset-content));
   @include media-breakpoint-up($bp-min) {
     flex-basis: 40%;
@@ -59,11 +61,10 @@ $bp-min: "md";
   }
 }
 
-.project__media {
-  // transform: translateY(var(--v-offset-media));
+.project__copy {
+  margin-bottom: 20px;
   @include media-breakpoint-up($bp-min) {
-    flex-basis: 40%;
-    max-width: 40%;
+    margin-bottom: unset;
   }
 }
 
@@ -74,6 +75,11 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
   position: relative;
   margin-bottom: 15px;
   filter: blur(0.75px);
+
+  @include media-breakpoint-down($bp-max) {
+    font-size: 50px;
+  }
+
   @include glitch-text(
     $foreground: $black,
     $background: transparentize(white, 0.9),
@@ -147,9 +153,15 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     content: "";
     display: block;
     width: 100%;
-    min-height: 300px;
-    height: 50vh;
+    height: 0;
+    padding-bottom: percentage(divide(9, 16));
     pointer-events: none;
+
+    @include media-breakpoint-up($bp-min) {
+      min-height: 300px;
+      height: 50vh;
+      padding-bottom: unset;
+    }
   }
 
   .smart-image {
@@ -166,7 +178,40 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       }
     }
 
-    // Background gradient behind images
+    // Background border behind images
+    &:after {
+      // content: "";
+      @include stretch-within;
+      border: 2px solid transparentize($black, 0.25);
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      bottom: 10px;
+      top: unset;
+
+      .project--style-dark & {
+        border-color: transparentize($white, 0.25);
+      }
+
+      .project--layout-left & {
+        right: unset;
+        left: -17px;
+        transform: translate(
+          calc(-0.5 * var(--v-offset-bg)),
+          calc(-1 * var(--v-offset-bg))
+        );
+      }
+
+      .project--layout-right & {
+        left: unset;
+        right: -17px;
+        transform: translate(
+          calc(0.5 * var(--v-offset-bg)),
+          calc(-1 * var(--v-offset-bg))
+        );
+      }
+    }
+
     &:before {
       content: "";
       @include stretch-within;
@@ -176,18 +221,19 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       z-index: 0;
       top: 10px;
       bottom: unset;
-      transform: translateY(var(--v-offset-bg));
+
+      .project--layout-left & {
+        right: unset;
+        left: -10px;
+      }
+
+      .project--layout-right & {
+        left: unset;
+        right: -10px;
+      }
 
       @include media-breakpoint-up($bp-min) {
-        .project--layout-left & {
-          right: unset;
-          left: -10px;
-        }
-
-        .project--layout-right & {
-          left: unset;
-          right: -10px;
-        }
+        transform: translateY(var(--v-offset-bg));
       }
     }
   }
@@ -201,6 +247,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       border-color: $white;
     }
   }
+
   picture,
   img {
     //@include stretch-within;
@@ -209,5 +256,10 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     object-position: top left;
     display: block;
     height: 100%;
+    width: 100%;
+
+    @include media-breakpoint-up($bp-min) {
+      width: auto;
+    }
   }
 }

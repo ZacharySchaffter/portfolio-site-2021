@@ -68,11 +68,12 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
   // ==============
   // On initial mount, bind event handler.  Unbind on dismount
   useEffect(() => {
-    window.addEventListener("mousemove", handleMousemove);
+    if (!heroNode) return;
+    heroNode.addEventListener("mousemove", handleMousemove);
     return () => {
-      window.removeEventListener("mousemove", handleMousemove);
+      heroNode.removeEventListener("mousemove", handleMousemove);
     };
-  }, []);
+  }, [heroNode]);
 
   // Anytime hero dimensions change, update the center coordinates
   useEffect(() => {
@@ -93,7 +94,7 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
       style={{
         "--blur": "1px",
         "--bg-offset-x": offsetX + "px",
-        "--bg-offset-y": offsetY + "px",
+        "--bg-offset-y": Math.min(offsetY, 70) + "px",
       }}
     >
       {/* SEO TITLE (Invisible, text that renders is an SVG)  */}

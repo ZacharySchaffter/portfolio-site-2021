@@ -26,8 +26,10 @@ $spacing: 8px;
 }
 
 .footer__copyright {
+  font-family: $font-family-monospace;
   font-size: 10px;
   color: $white;
   text-align: center;
   padding: 4px 0;
+  text-transform: uppercase;
 }

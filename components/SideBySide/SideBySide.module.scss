@@ -27,7 +27,7 @@ $bp-min: "md";
 .sbs__inner {
   margin-left: -1 * $spacing;
   margin-right: -1 * $spacing;
-  width: 100%;
+  min-width: 100%;
   @include media-breakpoint-up("md") {
     display: flex;
     align-items: center;
@@ -39,6 +39,8 @@ $bp-min: "md";
 .sbs-col {
   padding-left: $spacing;
   padding-right: $spacing;
+  margin-bottom: 20px;
+
   @include media-breakpoint-up($bp-min) {
     flex-basis: 50%;
     max-width: 50%;
@@ -60,6 +62,7 @@ $bp-min: "md";
 
 .sbs__title {
   position: relative;
+  margin-bottom: 20px;
   @include glitch-text(
     $color1: $glitch1,
     $color2: $glitch2,
@@ -80,7 +83,7 @@ $bp-min: "md";
   }
 
   p {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   a {

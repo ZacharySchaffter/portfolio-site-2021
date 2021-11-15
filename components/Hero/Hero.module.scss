@@ -78,9 +78,13 @@ $bp-max: "sm";
 .hero-eyebrow {
   font-size: 18px;
   text-transform: uppercase;
-  letter-spacing: 0.7em;
-  margin-bottom: 30px;
+  letter-spacing: 0.65em;
+  margin-bottom: 20px;
   filter: blur(var(--blur));
+
+  @include media-breakpoint-up("md") {
+    letter-spacing: 0.7em;
+  }
 }
 
 .hero-social {
