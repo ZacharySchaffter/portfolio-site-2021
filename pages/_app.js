@@ -1,6 +1,6 @@
 import "styles/globals.scss";
 // Components
-import Layout from "/components/Layout";
+import Layout from "components/Layout";
 
 function App({ Component, pageProps }) {
   const { background, flush, ...staticPageProps } = pageProps;

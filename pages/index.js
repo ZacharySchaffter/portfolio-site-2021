@@ -1,5 +1,5 @@
 // Components
-import Hero from "/components/Hero/Hero";
+import Hero from "components/Hero/Hero";
 import FeaturedProject from "components/FeaturedProject/FeaturedProject";
 
 // Utils

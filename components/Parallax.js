@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import useDimensions from "/components/hooks/useDimensions";
+import useDimensions from "components/hooks/useDimensions";
 
 const ParallaxContext = createContext();
 

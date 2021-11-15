@@ -3,9 +3,9 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 
 // Site components
-import { ParallaxProvider } from "/components/Parallax";
-import Nav from "/components/Nav/Nav";
-import Footer from "/components/Footer/Footer";
+import { ParallaxProvider } from "components/Parallax";
+import Nav from "components/Nav/Nav";
+import Footer from "components/Footer/Footer";
 
 export default ({
   title,
@@ -35,7 +35,11 @@ export default ({
         <meta name="description" content={metaDesc} />
 
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin={true}
+        />
       </Head>
 
       <ParallaxProvider>

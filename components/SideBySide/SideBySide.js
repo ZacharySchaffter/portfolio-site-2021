@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { parse } from "marked";
 import SocialMediaLinks from "components/SocialMediaLinks";
 import styles from "./SideBySide.module.scss";
-import SmartImage from "/components/SmartImage";
+import SmartImage from "components/SmartImage";
 
 const SidebySide = ({
   title = "",

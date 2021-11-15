@@ -1,4 +1,4 @@
-import SocialMediaLinks from "/components/SocialMediaLinks";
+import SocialMediaLinks from "components/SocialMediaLinks";
 import styles from "./Footer.module.scss";
 
 export default () => {

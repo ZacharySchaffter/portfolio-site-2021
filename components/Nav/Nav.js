@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./Nav.module.scss";
 import { useRouter } from "next/router";
-import { Logo } from "/components/icons";
+import { Logo } from "components/icons";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
