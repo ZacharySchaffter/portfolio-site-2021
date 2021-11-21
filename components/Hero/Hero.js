@@ -118,9 +118,6 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
             <h2
               className={clsx([styles["hero-title"], "h1"])}
               data-text={title}
-              style={{
-                maxWidth: 600,
-              }}
             >
               {title}
             </h2>
