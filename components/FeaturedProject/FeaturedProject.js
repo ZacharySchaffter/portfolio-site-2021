@@ -24,8 +24,6 @@ export default ({ project, style = "dark", layout = "left" }) => {
               "--v-offset-grayscale":
                 Math.pow(100 * Math.min(1, Math.abs(center.percent)), 1.1) +
                 "%",
-              "--v-offset-blur":
-                2 * Math.min(1, Math.abs(center.percent)) + "px",
               "--v-offset-bg": Math.min(center.percent, 1) * 30 + 10 + "px",
             }}
           >

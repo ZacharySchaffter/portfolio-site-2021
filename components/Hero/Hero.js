@@ -92,7 +92,6 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
       ref={assignHeroRef}
       className={clsx(styles.hero, "bg-grain")}
       style={{
-        "--blur": "1px",
         "--bg-offset-x": offsetX + "px",
         "--bg-offset-y": Math.min(offsetY, 70) + "px",
       }}
