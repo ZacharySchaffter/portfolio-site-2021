@@ -78,16 +78,18 @@ export async function getProjectList() {
   throw new Error("Error fetching project list.");
 }
 
-export async function getModelByHandle(handle) {
+export async function getModelByHandle(handle, contentType) {
   if (!handle) {
     throw new Error("Handle is required.");
   }
-
+  if (!contentType) {
+    throw new Error("Content Type is required.");
+  }
   const entries = await client.getEntries({
-    fields: {
-      handle,
-    },
+    content_type: contentType,
+    "fields.handle": handle,
   });
+
   if (entries && entries.total && entries.items[0]) {
     return entries.items[0];
   }

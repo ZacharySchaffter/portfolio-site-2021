@@ -26,7 +26,7 @@ const About = ({ sbs }) => {
 };
 
 export async function getStaticProps() {
-  const sbs = (await getModelByHandle("sbs-about-me")) ?? {};
+  const sbs = (await getModelByHandle("sbs-about-me", "sideBySide")) ?? {};
 
   return {
     props: { background: "black", sbs },
