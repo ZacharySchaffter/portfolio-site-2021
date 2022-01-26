@@ -23,7 +23,7 @@ const socialMedia = [
   {
     name: "LinkedIn",
     icon: Icons.LinkedIn,
-    url: "https://linkedin.com/zacharyschaffter",
+    url: "https://www.linkedin.com/in/zachary-schaffter/",
     description: "Let's connect!",
   },
 ];
