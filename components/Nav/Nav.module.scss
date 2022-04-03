@@ -14,11 +14,19 @@ $color-shift-timing: ease;
   padding-left: 20px;
   padding-right: 20px;
 
-  &--inverted {
+  // Invert color to white when header is inverted.
+  &.site-nav--inverted,
+  .layout-wrapper.bg-black {
     color: $white;
   }
 
-  .layout-wrapper.bg-black {
+  // Bug: Anchor Color in Chrome Browser
+  // For some reason the anchor tags aren't inheriting the color of the <nav>
+  // when the style inverts, so I'm adding the colors/transitions explicitly here
+  a {
+    color: $black;
+  }
+  &.site-nav--inverted a {
     color: $white;
   }
 
@@ -33,6 +41,7 @@ $color-shift-timing: ease;
       flex: 1 0 auto;
       position: relative;
 
+      // Active link styling
       &.active {
         a {
           background-image: linear-gradient(
