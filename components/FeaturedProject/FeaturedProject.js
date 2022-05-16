@@ -79,10 +79,10 @@ export default ({ project, style = "dark", layout = "left" }) => {
               <a href={project.url} className={clsx(styles["project__media"])}>
                 {/* MEDIA MOBILE */}
                 {/* <SmartImage
-                className={clsx({ "d-md-none": mediaDesktop?.file?.url })}
-                src={mediaMobile?.file?.url}
-                alt={mediaMobile?.title || project.title}
-              /> */}
+                  className={clsx({ "d-md-none": mediaDesktop?.file?.url })}
+                  src={mediaMobile?.file?.url}
+                  alt={mediaMobile?.title || project.title}
+                /> */}
 
                 {/* MEDIA DESKTOP */}
                 <SmartImage

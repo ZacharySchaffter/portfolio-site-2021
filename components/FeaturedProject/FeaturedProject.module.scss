@@ -44,9 +44,7 @@ $bp-max: "sm";
   @include media-breakpoint-up($bp-min) {
     display: flex;
     flex-direction: row;
-    filter: Grayscale(
-      var(--v-offset-grayscale)
-    ); // Wonky capitalization to avoid SCSS grayscale() method
+    filter: Grayscale(var(--v-offset-grayscale)); // Wonky capitalization to avoid SCSS grayscale() method
   }
 
   .project--layout-right & {
@@ -56,6 +54,7 @@ $bp-max: "sm";
 
 .project__copy,
 .project__media {
+
   // transform: translateY(var(--v-offset-content));
   @include media-breakpoint-up($bp-min) {
     flex-basis: 40%;
@@ -65,6 +64,7 @@ $bp-max: "sm";
 
 .project__copy {
   margin-bottom: 20px;
+
   @include media-breakpoint-up($bp-min) {
     margin-bottom: unset;
   }
@@ -81,28 +81,26 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     font-size: 50px;
   }
 
-  @include glitch-text(
-    $foreground: $black,
+  @include glitch-text($foreground: $black,
     $background: transparentize(white, 0.9),
     $color1: $glitch1,
     $color2: $glitch2,
-    $offset: 10px
-  );
+    $offset: 10px);
 
   .project--style-dark & {
-    @include glitch-text(
-      $foreground: $white,
+    @include glitch-text($foreground: $white,
       $background: $black,
       $color1: $glitch1,
       $color2: $glitch2,
-      $offset: $glitch-offset
-    );
+      $offset: $glitch-offset );
   }
 
   // Stagger the glitch animations on the pseudo elements
   $steps: 20;
+
   @for $i from 1 to $steps {
     .project:nth-child(#{$i}) & {
+
       &:before,
       &:after {
         animation-duration: $glitch-anim-duration;
@@ -136,6 +134,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       content: "[";
       font-size: 1.1em;
     }
+
     &:after {
       content: "]";
       font-size: 1.1em;
@@ -156,6 +155,8 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     padding-bottom: percentage(divide(9, 16));
     pointer-events: none;
 
+    // On desktop, only a height is specified to constrain the image,
+    // since it's juxtaposed beside the text and flows off the page.
     @include media-breakpoint-up($bp-min) {
       min-height: 300px;
       height: 50vh;
@@ -177,40 +178,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       }
     }
 
-    // Background border behind images
-    &:after {
-      // content: "";
-      @include stretch-within;
-      border: 2px solid transparentize($black, 0.25);
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      bottom: 10px;
-      top: unset;
-
-      .project--style-dark & {
-        border-color: transparentize($white, 0.25);
-      }
-
-      .project--layout-left & {
-        right: unset;
-        left: -17px;
-        transform: translate(
-          calc(-0.5 * var(--v-offset-bg)),
-          calc(-1 * var(--v-offset-bg))
-        );
-      }
-
-      .project--layout-right & {
-        left: unset;
-        right: -17px;
-        transform: translate(
-          calc(0.5 * var(--v-offset-bg)),
-          calc(-1 * var(--v-offset-bg))
-        );
-      }
-    }
-
+    // Background gradient behind images
     &:before {
       content: "";
       @include stretch-within;
@@ -236,29 +204,33 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       }
     }
   }
+
   picture {
     position: relative;
     z-index: 1;
     border: 1px solid $black;
     background-color: white;
+    width: 100%;
 
     .project--style-dark & {
       border-color: $white;
+    }
+
+    @include media-breakpoint-up($bp-min) {
+      width: 48vw;
     }
   }
 
   picture,
   img {
-    //@include stretch-within;
     z-index: 1;
-    object-fit: cover;
-    object-position: top left;
     display: block;
     height: 100%;
-    width: 100%;
+  }
 
-    @include media-breakpoint-up($bp-min) {
-      width: auto;
-    }
+  img {
+    width: 100%;
+    object-fit: cover;
+    object-position: top left;
   }
 }
