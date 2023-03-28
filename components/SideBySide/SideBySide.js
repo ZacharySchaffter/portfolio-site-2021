@@ -8,9 +8,11 @@ const SidebySide = ({
   title = "",
   description = "",
   imageUrl = null,
+  imageAspectRatio = 0, // defaults to square
   showSocial = false,
   style = "light", // 'light', 'dark'
 }) => {
+  console.log(imageAspectRatio);
   return (
     <div className={clsx(styles["sbs"], styles[`sbs--style-${style}`])}>
       <div className={clsx(styles["sbs__inner"])}>
@@ -41,7 +43,16 @@ const SidebySide = ({
         </div>
 
         {/* COLUMN (IMAGE) */}
-        <div className={clsx(styles["sbs-col"], styles["sbs-col--image"])}>
+        <div
+          className={clsx(styles["sbs-col"], styles["sbs-col--image"])}
+          style={
+            imageAspectRatio
+              ? {
+                  aspectRatio: String(imageAspectRatio),
+                }
+              : {}
+          }
+        >
           <SmartImage src={imageUrl} layout="static" />
         </div>
       </div>
