@@ -4,7 +4,11 @@ import SideBySide from "components/SideBySide/SideBySide";
 const About = ({ sbs }) => {
   const { title, copyText, image, showSocial } = sbs?.fields || {};
   const imageSrc = image?.fields?.file?.url;
-  // const imageAlt = image?.fields?.description;
+  const { width, height } = image?.fields?.file?.details?.image || {
+    width: 0,
+    height: 0,
+  };
+  const aspectRatio = width / height;
 
   return (
     <div>
@@ -17,6 +21,7 @@ const About = ({ sbs }) => {
           title={title}
           description={copyText}
           imageUrl={imageSrc}
+          imageAspectRatio={aspectRatio}
           style={"dark"}
           showSocial={showSocial}
         />
