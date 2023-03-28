@@ -4,6 +4,10 @@ A portfolio site created with React/Next and Contentful.
 
 ## Getting Started
 
+Duplicate `.env.sample` to `.env` and add the Contentful space ID and access key to it.
+
+### Commands
+
 To run the development server:
 
 ```bash
