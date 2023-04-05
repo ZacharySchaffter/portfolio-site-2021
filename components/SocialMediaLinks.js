@@ -6,7 +6,7 @@ const socialMedia = [
     name: "CodePen",
     icon: Icons.CodePen,
     url: "https://codepen.com/zschaffter",
-    description: "My code scratch pad with some fun CSS experiments",
+    description: "Some fun CSS experiments",
   },
   {
     name: "GitHub",
@@ -17,7 +17,7 @@ const socialMedia = [
   {
     name: "Shapeways",
     icon: Icons.Shapeways,
-    url: "https://shapeways.com/robozack",
+    url: "https://www.shapeways.com/shops/robozack",
     description: "Some of my 3D Prints",
   },
   {
