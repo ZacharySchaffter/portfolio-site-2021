@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import useThrottle from "./useThrottle";
 
 /**
  * Provided an integer, this custom hook continually modifies the value so that it approaches 0/
