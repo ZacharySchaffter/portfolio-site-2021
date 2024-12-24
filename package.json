@@ -5,21 +5,32 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "contentful-codegen": "contentful-typescript-codegen --output types/__generated__/contentful.d.ts"
   },
   "dependencies": {
     "clsx": "^1.1.1",
     "contentful": "^9.1.4",
     "lodash.throttle": "^4.1.1",
     "marked": "^4.0.3",
-    "next": "^12.3.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "^15.1.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "sass": "^1.43.4",
     "webpack": "^5.64.0"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.2"
+    "@eslint/eslintrc": "^3.2.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "contentful-management": "^11.40.2",
+    "contentful-typescript-codegen": "^3.4.0",
+    "dotenv": "^16.4.7",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^15.1.2",
+    "postcss": "^8.4.49",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }

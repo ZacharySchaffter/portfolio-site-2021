@@ -32,5 +32,7 @@ yarn-error.log*
 
 # vercel
 .vercel
-
 .env
+
+# contentful generated types
+types/__generated__/*
