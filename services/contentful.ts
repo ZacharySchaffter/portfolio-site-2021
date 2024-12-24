@@ -1,3 +1,4 @@
+import { CONTENT_TYPE, IEntry } from "@/types/__generated__/contentful";
 import * as contentful from "contentful";
 
 const CONTENTFUL_SPACE = process.env.CONTENTFUL_SPACE_ID || "";
@@ -26,12 +27,15 @@ class Contentful {
     });
   }
 
-  async getContentByHandle(handle: string, contentType: string) {
+  async getContentByHandle<T extends IEntry>(
+    handle: string,
+    contentType: CONTENT_TYPE
+  ): Promise<T | undefined> {
     if (!handle) {
-      throw new Error("Handle is required.");
+      throw new Error("no handle provided and is required.");
     }
     if (!contentType) {
-      throw new Error("contentType is required.");
+      throw new Error("no contentType provided and is required.");
     }
     const entries = await this.client.getEntries({
       content_type: contentType,
@@ -39,7 +43,7 @@ class Contentful {
     });
 
     if (entries && entries.total && entries.items[0]) {
-      return entries.items[0];
+      return entries.items[0] as T;
     }
 
     throw new Error(`Error fetching model with handle: ${handle}`);

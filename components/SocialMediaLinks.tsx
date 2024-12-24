@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import * as Icons from "components/Icons";
+import * as Icons from "@/icons";
 
 const socialMedia = [
   {
@@ -28,7 +28,12 @@ const socialMedia = [
   },
 ];
 
-export default ({ color, className }) => (
+type Props = {
+  color?: string;
+  className?: string;
+};
+
+const SocialMediaLinks: React.FC<Props> = ({ color, className }) => (
   <div className={clsx("social-media", className)}>
     {socialMedia.map((sm) => (
       <a
@@ -41,3 +46,5 @@ export default ({ color, className }) => (
     ))}
   </div>
 );
+
+export default SocialMediaLinks;

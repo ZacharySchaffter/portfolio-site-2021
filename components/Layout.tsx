@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState, PropsWithChildren } from "react";
-import { ParallaxProvider } from "@/components/Parallax";
+import { ParallaxProvider } from "@/context/Parallax";
 import Nav from "@/components/Nav/Nav";
-import Footer from "@/components/Footer/Footer";
+import Footer from "@/components/Footer";
 import clsx from "clsx";
 
 type Props = {
@@ -16,12 +16,12 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
   isFlush = false,
   children,
 }) => {
-  const [invert, setInvert] = useState(false); // nav state
+  const [isNavInverted, setIsNavInverted] = useState(false); // nav state
 
-  // If background for page is black, invert nav color automatically
+  // If background for page is black, isNavInverted nav color automatically
   useEffect(() => {
     if (background === "black") {
-      setInvert(true);
+      setIsNavInverted(true);
     }
   }, [background]);
 
@@ -33,7 +33,12 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({
             flush: isFlush,
           })}
         >
-          <Nav invert={invert} setInvert={setInvert} />
+          <Nav
+            isInverted={isNavInverted}
+            setIsInverted={(newState) => {
+              setIsNavInverted(newState);
+            }}
+          />
 
           <main>{children}</main>
 

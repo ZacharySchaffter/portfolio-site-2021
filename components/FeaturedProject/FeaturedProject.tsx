@@ -1,26 +1,54 @@
+"use client";
+
 import clsx from "clsx";
 import styles from "./FeaturedProject.module.scss";
-import SmartImage from "components/SmartImage";
-import { Parallax } from "components/Parallax";
+import SmartImage from "@/components/SmartImage";
+import { WithParallax } from "@/context/Parallax";
+import { ReactNode } from "react";
 
-export default ({ project, style = "dark", layout = "left" }) => {
-  const roles = project?.projectRoles || [];
-  const mediaDesktop = project?.featuredMedia?.fields;
+type Variant = "dark" | "light";
+
+type Props = {
+  title: string;
+  description?: ReactNode;
+  roles?: string[];
+  image?: {
+    url: string;
+    altText: string;
+  };
+  link?: string;
+  variant: Variant;
+  layout: "left" | "right";
+};
+
+const FeaturedProject: React.FC<Props> = ({
+  title,
+  description,
+  roles,
+  link,
+  image,
+  variant = "dark",
+  layout = "left",
+}) => {
+  // const roles = project?.projectRoles || [];
+  // const mediaDesktop = project?.featuredMedia?.fields;
   // const mediaMobile = project?.featuredMediaMobile?.fields;
 
   return (
-    <Parallax
+    <WithParallax
+      // @ts-expect-error TODO: fix HOC render typing
       render={({ offset }) => {
         const { center } = offset;
         return (
           <div
             className={clsx(
               styles["project"],
-              styles[`project--style-${style}`],
+              styles[`project--style-${variant}`],
               styles[`project--layout-${layout}`],
-              { "bg-grain": style === "light" }
+              { "bg-grain": variant === "light" }
             )}
             style={{
+              // @ts-expect-error - unknown css var
               "--v-offset-grayscale":
                 Math.pow(100 * Math.min(1, Math.abs(center.percent)), 1.1) +
                 "%",
@@ -33,9 +61,9 @@ export default ({ project, style = "dark", layout = "left" }) => {
                 {/* TITLE  */}
                 <h2
                   className={clsx(styles["project__title"], "h1")}
-                  data-text={project.title}
+                  data-text={title}
                 >
-                  {project.title}
+                  {title}
                 </h2>
 
                 {/* SHORT DESCRIPTION  */}
@@ -45,11 +73,11 @@ export default ({ project, style = "dark", layout = "left" }) => {
                     "ff-monospace"
                   )}
                 >
-                  <p>{project.descriptionShort}</p>
+                  <p>{description}</p>
                 </div>
 
-                {/* ROLES */}
-                {roles && roles.length && (
+                {/* FOOTNOTE */}
+                {roles && roles.length > 0 && (
                   <div
                     className={clsx(styles["project__roles"], "ff-monospace")}
                   >
@@ -62,12 +90,12 @@ export default ({ project, style = "dark", layout = "left" }) => {
                 )}
 
                 {/* LINK */}
-                {project.url && (
+                {link && (
                   <a
-                    href={project.url}
-                    title={project.title}
+                    href={link}
+                    title={title}
                     className={clsx("btn", {
-                      "btn--light": style === "dark",
+                      "btn--light": variant === "dark",
                     })}
                   >
                     Visit
@@ -76,21 +104,16 @@ export default ({ project, style = "dark", layout = "left" }) => {
               </div>
 
               {/* MEDIA */}
-              <a href={project.url} className={clsx(styles["project__media"])}>
-                {/* MEDIA MOBILE */}
-                {/* <SmartImage
-                  className={clsx({ "d-md-none": mediaDesktop?.file?.url })}
-                  src={mediaMobile?.file?.url}
-                  alt={mediaMobile?.title || project.title}
-                /> */}
-
-                {/* MEDIA DESKTOP */}
-                <SmartImage
-                  className={clsx(styles["smart-image"])}
-                  src={mediaDesktop?.file?.url}
-                  alt={mediaDesktop?.title || project.title}
-                />
-              </a>
+              {image && (
+                <a href={link} className={clsx(styles["project__media"])}>
+                  {/* MEDIA DESKTOP */}
+                  <SmartImage
+                    className={clsx(styles["smart-image"])}
+                    src={image.url}
+                    alt={image.altText}
+                  />
+                </a>
+              )}
             </div>
           </div>
         );
@@ -98,3 +121,5 @@ export default ({ project, style = "dark", layout = "left" }) => {
     />
   );
 };
+
+export default FeaturedProject;

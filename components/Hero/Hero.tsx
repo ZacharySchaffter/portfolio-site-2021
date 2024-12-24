@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
-
-import useDimensions from "components/hooks/useDimensions";
-
 import styles from "./Hero.module.scss";
-import SocialMediaLinks from "components/SocialMediaLinks";
+import useDimensions from "@/hooks/useDimensions";
+import SocialMediaLinks from "@/components/SocialMediaLinks";
 
 /**
  *
@@ -50,11 +50,18 @@ const getOffsetWithFalloff = (
   );
 };
 
-export default ({ title = "", eyebrow = "", showSocial = true }) => {
-  // ==============
-  // STATE
-  // ==============
-  const [{ x, y, width, height }, heroNode, assignHeroRef] = useDimensions();
+type Props = {
+  title: string;
+  eyebrow?: string;
+  showSocial?: boolean;
+};
+const Hero: React.FC<Props> = ({
+  title = "",
+  eyebrow = "",
+  showSocial = true,
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { left, top, width, height } = useDimensions(ref.current);
   const [[mouseX, mouseY], setMouseCoords] = useState([0, 0]);
   const [[centerX, centerY], setCenterCoords] = useState([0, 0]);
 
@@ -63,22 +70,19 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
     setMouseCoords([e.pageX, e.pageY]);
   };
 
-  // ==============
-  // LIFECYCLE
-  // ==============
-  // On initial mount, bind event handler.  Unbind on dismount
   useEffect(() => {
-    if (!heroNode) return;
-    heroNode.addEventListener("mousemove", handleMousemove);
+    if (!ref.current) return;
+    ref.current.addEventListener("mousemove", handleMousemove);
+
     return () => {
-      heroNode.removeEventListener("mousemove", handleMousemove);
+      ref.current?.removeEventListener("mousemove", handleMousemove);
     };
-  }, [heroNode]);
+  });
 
   // Anytime hero dimensions change, update the center coordinates
   useEffect(() => {
-    setCenterCoords([x + 0.5 * width, y + 0.5 * height]);
-  }, [x, y, width, height]);
+    setCenterCoords([left + 0.5 * width, top + 0.5 * height]);
+  }, [left, top, width, height]);
 
   const [offsetX, offsetY] = getOffsetWithFalloff(
     [centerX, centerY],
@@ -89,9 +93,10 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
 
   return (
     <div
-      ref={assignHeroRef}
+      ref={ref}
       className={clsx(styles.hero, "bg-grain")}
       style={{
+        // @ts-expect-error TODO: add css vars to typing
         "--bg-offset-x": offsetX + "px",
         "--bg-offset-y": Math.min(offsetY, 70) + "px",
       }}
@@ -132,3 +137,5 @@ export default ({ title = "", eyebrow = "", showSocial = true }) => {
     </div>
   );
 };
+
+export default Hero;
