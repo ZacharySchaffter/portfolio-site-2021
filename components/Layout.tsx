@@ -17,8 +17,8 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({ bgColor, children }) => {
   }, [bgColor]);
 
   return (
-    <>
-      <div className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}>
+    <body className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}>
+      <div>
         <Nav
           isInverted={isNavInverted}
           setIsInverted={(newState) => {
@@ -30,7 +30,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({ bgColor, children }) => {
 
         <Footer />
       </div>
-    </>
+    </body>
   );
 };
 

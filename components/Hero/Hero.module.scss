@@ -3,11 +3,9 @@ $bp-min: "md";
 $bp-max: "sm";
 
 .hero {
-  //background: #ccc;
   overflow: hidden;
   position: relative;
   min-height: 90vh;
-  background-image: radial-gradient(ellipse at center, transparent, #ccc);
 }
 
 .hero-content {

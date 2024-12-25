@@ -5,9 +5,7 @@ import { ParallaxProvider } from "@/context/Parallax";
 const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <html>
-      <body>
-        <ParallaxProvider>{children}</ParallaxProvider>
-      </body>
+      <ParallaxProvider>{children}</ParallaxProvider>
     </html>
   );
 };

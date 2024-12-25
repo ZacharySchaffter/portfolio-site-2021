@@ -88,7 +88,7 @@ const Hero: React.FC<Props> = ({
   return (
     <div
       ref={ref}
-      className={clsx(styles.hero, "bg-grain")}
+      className={clsx(styles.hero, "bg-static")}
       style={{
         // @ts-expect-error TODO: add css vars to typing
         "--bg-offset-x": offsetX + "px",

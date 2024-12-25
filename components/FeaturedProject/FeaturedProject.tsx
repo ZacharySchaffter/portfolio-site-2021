@@ -30,10 +30,6 @@ const FeaturedProject: React.FC<Props> = ({
   variant = "dark",
   layout = "left",
 }) => {
-  // const roles = project?.projectRoles || [];
-  // const mediaDesktop = project?.featuredMedia?.fields;
-  // const mediaMobile = project?.featuredMediaMobile?.fields;
-
   return (
     <WithParallax
       // @ts-expect-error TODO: fix HOC render typing
@@ -44,15 +40,17 @@ const FeaturedProject: React.FC<Props> = ({
             className={clsx(
               styles["project"],
               styles[`project--style-${variant}`],
-              styles[`project--layout-${layout}`],
-              { "bg-grain": variant === "light" }
+              styles[`project--layout-${layout}`]
             )}
             style={{
               // @ts-expect-error - unknown css var
-              "--v-offset-grayscale":
-                Math.pow(100 * Math.min(1, Math.abs(center.percent)), 1.1) +
-                "%",
-              "--v-offset-bg": Math.min(center.percent, 1) * 30 + 10 + "px",
+              "--v-offset-grayscale": center.percent
+                ? Math.pow(100 * Math.min(1, Math.abs(center.percent)), 1.1) +
+                  "%"
+                : undefined,
+              "--v-offset-bg": center.percent
+                ? Math.min(center.percent, 1) * 30 + 10 + "px"
+                : undefined,
             }}
           >
             <div className={styles["project__inner"]}>
