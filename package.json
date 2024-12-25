@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run contentful-codegen & next build",
+    "prebuild": "npm run contentful-codegen",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "contentful-codegen": "contentful-typescript-codegen --output types/__generated__/contentful.d.ts"
