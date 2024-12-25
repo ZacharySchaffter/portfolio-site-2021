@@ -51,10 +51,10 @@ $frequency: 0.1; // frequency of a glitch. 0-1, higher number = more often
 @keyframes pseudoGlitch1 {
   @for $i from 0 through $steps {
     // Variables used for the effect
-    $y: percentage(random()); // y offset of clip bar
+    $y: math.percentage(random()); // y offset of clip bar
     $height: (0.5em * random()); // height of clip bar
     $bottom: calc(#{$y} + #{$height});
-    $keyframe-percent: percentage($i * (math.div(1, $steps)));
+    $keyframe-percent: math.percentage($i * (math.div(1, $steps)));
 
     // Check to see if this iteration should glitch, based
     // on our frequency
@@ -88,10 +88,10 @@ $frequency: 0.1; // frequency of a glitch. 0-1, higher number = more often
 @keyframes pseudoGlitch2 {
   @for $i from 0 through $steps {
     // Variables used for the effect
-    $y: percentage(random()); // y offset of clip bar
+    $y: math.percentage(random()); // y offset of clip bar
     $height: (1em * random()); // height of clip bar
     $bottom: calc(#{$y} + #{$height});
-    $keyframe-percent: percentage($i * math.div(1, $steps));
+    $keyframe-percent: math.percentage($i * math.div(1, $steps));
 
     // Check to see if this iteration should glitch, based
     // on our frequency
