@@ -65,11 +65,12 @@ const Hero: React.FC<Props> = ({
     const handleMousemove = (e: MouseEvent) => {
       setMouseCoords([e.pageX, e.pageY]);
     };
-    if (!ref.current) return;
-    ref.current.addEventListener("mousemove", handleMousemove);
+    const node = ref.current;
+    if (!node) return;
+    node.addEventListener("mousemove", handleMousemove);
 
     return () => {
-      ref.current?.removeEventListener("mousemove", handleMousemove);
+      node?.removeEventListener("mousemove", handleMousemove);
     };
   });
 

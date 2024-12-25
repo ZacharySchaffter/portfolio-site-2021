@@ -5,15 +5,18 @@ import { ISideBySide } from "@/types/__generated__/contentful";
 import Layout from "@/components/Layout";
 
 const AboutPage = async (): Promise<ReactNode> => {
-  let module: ISideBySide | undefined;
+  let sideBySide: ISideBySide | undefined;
   try {
-    module = await contentful.getContentByHandle("sideBySide", "sbs-about-me");
+    sideBySide = await contentful.getContentByHandle(
+      "sideBySide",
+      "sbs-about-me"
+    );
   } catch (err) {
     console.log("error fetching sms-about-me module:", err);
     throw new Error("failed to retrieve about me module");
   }
 
-  const { title, copyText, image, showSocial } = module?.fields || {};
+  const { title, copyText, image, showSocial } = sideBySide?.fields || {};
   const imageSrc = image?.fields?.file?.url;
   const { width, height } = image?.fields?.file?.details?.image || {
     width: 0,
