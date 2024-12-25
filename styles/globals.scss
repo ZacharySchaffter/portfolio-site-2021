@@ -1,12 +1,13 @@
-@import "./reset";
+@use "reset" as *;
+@use "variables" as *;
 
 // Utilities
-@import "./accessibility";
-@import "./display";
-@import "./typography";
+@use "accessibility" as *;
+@use "display" as *;
+@use "typography" as *;
 
 // Elements
-@import "./buttons";
+@use "buttons" as *;
 
 html,
 body {
@@ -38,12 +39,9 @@ $footer-height: 150px;
 .layout-wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  padding-top: 0px;
   min-height: 100vh;
 
-  &.flush {
-    padding-top: unset;
-  }
   main {
     flex: 1 0 auto;
   }
@@ -53,7 +51,7 @@ $footer-height: 150px;
 // Backgrounds
 // ============
 
-.bg-black {
+.bg-dark {
   background-color: $black;
 }
 

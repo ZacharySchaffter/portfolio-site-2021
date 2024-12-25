@@ -1,0 +1,29 @@
+@use "sass:map";
+
+// colors
+$black: #000;
+$white: #fff;
+$blue: #234ee4;
+$cyan: #07ffe1;
+
+$glitch1: $blue;
+$glitch2: $cyan;
+
+
+// fonts
+$font-size-base: 16px;
+$font-family-sans-serif: "Roboto", Helvetica, sans-serif;
+$font-family-monospace: "Roboto Mono", Helvetica, sans-serif;
+
+// grid
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  ) !default;
+
+$max-grid-width: map.get($grid-breakpoints, "xxl"
+);

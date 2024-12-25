@@ -1,3 +1,7 @@
+@use "sass:math";
+@use "sass:color";
+@use 'variables' as *;
+
 $border-width: 6px;
 $spacing-v-mobile: 80px;
 $spacing-v-desktop: 120px;
@@ -23,7 +27,7 @@ $bp-max: "sm";
     width: 100%;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to right, $glitch1, $glitch2);
+    // background-image: linear-gradient(to right, $glitch1, $glitch2);
   }
 
   // Dark layout
@@ -82,7 +86,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
   }
 
   @include glitch-text($foreground: $black,
-    $background: transparentize(white, 0.9),
+    $background: color.adjust(white, $alpha:-0.9),
     $color1: $glitch1,
     $color2: $glitch2,
     $offset: 10px);
@@ -152,7 +156,7 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     display: block;
     width: 100%;
     height: 0;
-    padding-bottom: percentage(divide(9, 16));
+    padding-bottom: math.percentage(divide(9, 16));
     pointer-events: none;
 
     // On desktop, only a height is specified to constrain the image,

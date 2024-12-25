@@ -1,0 +1,7 @@
+// Note: This file is prepended to all stylsheets via the next config.
+// This file shouldn't contain any actual style declarations, or else
+// they're be duplicated.
+@forward "utils/math";
+@forward "utils/breakpoints";
+@forward "utils/glitch-text";
+@forward "utils/stretch-within";

@@ -1,0 +1,123 @@
+@use 'sass:math';
+
+// Originally developed by me on CodePen:
+// https://codepen.io/zschaffter/pen/mdMKxrN
+
+@mixin glitch-text(
+  $background: black,
+  $foreground: white,
+  $color1: magenta,
+  $color2: cyan,
+  $offset: 2px
+) {
+  &:before,
+  &:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $background;
+    color: $foreground;
+    animation-delay: 4s;
+    pointer-events: none;
+    clip-path: polygon(
+      0 0,
+      0 0,
+      0 0,
+      0 0
+    ); // need any value for effect to be animatable!
+  }
+  &:before {
+    animation: pseudoGlitch1 3s infinite alternate-reverse;
+    right: $offset;
+    text-shadow: $offset 0px 3px $color1;
+  }
+  &:after {
+    animation: pseudoGlitch2 3s infinite alternate-reverse;
+    left: $offset;
+    text-shadow: -1 * $offset 0px 3px $color2;
+  }
+}
+
+// TODO: These animation declarations are being redundantly
+//  imported since they're not a SCSS var/function/mixin.
+
+// Used for the :before pseudo
+$steps: 25;
+$last-clip-path: none;
+$frequency: 0.1; // frequency of a glitch. 0-1, higher number = more often
+
+@keyframes pseudoGlitch1 {
+  @for $i from 0 through $steps {
+    // Variables used for the effect
+    $y: math.percentage(math.random()); // y offset of clip bar
+    $height: (0.5em * math.random()); // height of clip bar
+    $bottom: calc(#{$y} + #{$height});
+    $keyframe-percent: math.percentage($i * (math.div(1, $steps)));
+
+    // Check to see if this iteration should glitch, based
+    // on our frequency
+    $should-glitch: false;
+    @if math.random() < $frequency {
+      $should-glitch: true;
+    }
+
+    // Add addl' keyframe for last iteration's
+    // clip-path to avoid a 'sliding' effect
+    @if $i != 0 {
+      #{$keyframe-percent - 1} {
+        clip-path: $last-clip-path;
+      }
+    }
+
+    $clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    @if $should-glitch {
+      $clip-path: polygon(0 #{$y}, 100% #{$y}, 100% #{$bottom}, 0 #{$bottom});
+    }
+
+    #{$keyframe-percent} {
+      clip-path: $clip-path;
+    }
+
+    // Store vars for next iteration
+    $last-clip-path: $clip-path;
+  }
+}
+
+@keyframes pseudoGlitch2 {
+  @for $i from 0 through $steps {
+    // Variables used for the effect
+    $y: math.percentage(math.random()); // y offset of clip bar
+    $height: (1em * math.random()); // height of clip bar
+    $bottom: calc(#{$y} + #{$height});
+    $keyframe-percent: math.percentage($i * math.div(1, $steps));
+
+    // Check to see if this iteration should glitch, based
+    // on our frequency
+    $should-glitch: false;
+    @if math.random() < $frequency {
+      $should-glitch: true;
+    }
+
+    // Add addl' keyframe for last iteration's
+    // clip-path to avoid a 'sliding' effect
+    @if $i != 0 {
+      #{$keyframe-percent - 1} {
+        clip-path: $last-clip-path;
+      }
+    }
+
+    $clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+    @if $should-glitch {
+      $clip-path: polygon(0 #{$y}, 100% #{$y}, 100% #{$bottom}, 0 #{$bottom});
+    }
+
+    #{$keyframe-percent} {
+      clip-path: $clip-path;
+    }
+
+    // Store vars for next iteration
+    $last-clip-path: $clip-path;
+  }
+}

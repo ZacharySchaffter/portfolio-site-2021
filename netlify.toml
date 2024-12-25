@@ -1,0 +1,7 @@
+[build]
+publish = ".next"
+
+[[plugins]]
+# Netlify doens't recommend pinning this here, but the plugin can't be upgraded
+# via the UI, so...
+package = "@netlify/plugin-nextjs"
