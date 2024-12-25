@@ -1,23 +1,29 @@
+import { ImageBreakpoint, ImageFormat } from "@/types/image";
 import optimizeSource from "./optimizeSource";
 
+const formats: { format: ImageFormat; type: string }[] = [
+  { format: "webp", type: "image/webp" },
+  { format: "jpg", type: "image/jpeg" },
+];
+
+type ResponsiveSourceSet = {
+  media: string;
+  type: string;
+  srcSet: string;
+};
+
 /**
- * Provided a breakpoints array (like above),
- * returns an array of source objects to populate a
- * <picture> element.
- * @param {String} src - source URL for the media
- * @param {Array of Objects} breakpoints
- * @param {Array of Objects}
+ * Provided a breakpoints array (like above), returns an array of source objects
+ * to populate a <picture> element.
  */
-const getResponsiveSources = (src, breakpoints) => {
+const getResponsiveSources = (
+  src: string,
+  breakpoints: ImageBreakpoint[]
+): ResponsiveSourceSet[] => {
   // Bail if provided a non-array
   if (!Array.isArray(breakpoints)) {
     return [];
   }
-  // Array of formats we'll output for each source element
-  const formats = [
-    { format: "webp", type: "image/webp" },
-    { format: "pjpg", type: "image/jpeg" },
-  ];
 
   // Get sorted array of all the numeric breakpoints
   const allBreakpoints = breakpoints
@@ -41,10 +47,10 @@ const getResponsiveSources = (src, breakpoints) => {
       const media = !breakpoint
         ? `(max-width:${lowestNonZero - 1}px)`
         : breakpoint === highest
-        ? `(min-width: ${highest}px)`
-        : `(min-width:${breakpoint}px) and (max-width:${
-            allBreakpoints[bpIndex + 1]
-          }px)`;
+          ? `(min-width: ${highest}px)`
+          : `(min-width:${breakpoint}px) and (max-width:${
+              allBreakpoints[bpIndex + 1]
+            }px)`;
 
       // For each image format, output a source object
       const breakpointFormat = formats.map(({ format, type }) => {
@@ -62,7 +68,7 @@ const getResponsiveSources = (src, breakpoints) => {
       });
       return [...acc, ...breakpointFormat];
     },
-    []
+    [] as ResponsiveSourceSet[]
   );
 };
 

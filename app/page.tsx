@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import FeaturedProject from "@/components/FeaturedProject";
 import contentful from "@/services/contentful";
 import { IProject, IQueue } from "@/types/__generated__/contentful";
+import Layout from "@/components/Layout";
 
 export const metadata: Metadata = {
   title: "Zachary Schaffter | Frontend Software Engineer",
@@ -13,10 +14,7 @@ const IndexPage = async (): Promise<ReactNode> => {
   let projectQueue: IQueue | undefined;
 
   try {
-    projectQueue = await contentful.getContentByHandle<IQueue>(
-      "project-list",
-      "queue"
-    );
+    projectQueue = await contentful.getContentByHandle("queue", "project-list");
   } catch (err) {
     console.error("project list not found", err);
   }
@@ -27,7 +25,7 @@ const IndexPage = async (): Promise<ReactNode> => {
     ) || [];
 
   return (
-    <>
+    <Layout>
       {/* SEO TITLE */}
       <h1 className="sr-only">
         Zachary Schaffter | Frontend Software Engineer
@@ -66,7 +64,7 @@ const IndexPage = async (): Promise<ReactNode> => {
           );
         })}
       </div>
-    </>
+    </Layout>
   );
 };
 

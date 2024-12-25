@@ -1,11 +1,7 @@
 import clsx from "clsx";
 import optimizeSource from "@/utils/image/optimizeSource";
 import getResponsiveSources from "@/utils/image/getResponsiveSources";
-
-type ImageBreakpoint = {
-  breakpoint: number;
-  width: number;
-};
+import { ImageBreakpoint } from "@/types/image";
 
 // Default breakpoints for the responsive source map.
 // The image will be `width`px wide when the viewport is at or under the specified breakpoint.
@@ -38,7 +34,7 @@ const defaultBreakpoints: ImageBreakpoint[] = [
 
 type Props = {
   src: string;
-  alt: string;
+  alt?: string;
   width?: number;
   height?: number;
   layout?: "responsive" | "static";
@@ -63,8 +59,8 @@ const SmartImage: React.FC<Props> = ({
         {layout === "responsive" && responsiveSources ? (
           <>
             {/* RESPONSIVE PICTURE ELEMENT */}
-            {responsiveSources.map((source, i) => (
-              <source key={i} {...source} />
+            {responsiveSources.map((pictureSource, i) => (
+              <source key={i} {...pictureSource} />
             ))}
           </>
         ) : (

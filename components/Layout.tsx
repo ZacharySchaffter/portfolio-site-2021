@@ -1,50 +1,35 @@
 "use client";
 
 import { useEffect, useState, PropsWithChildren } from "react";
-import { ParallaxProvider } from "@/context/Parallax";
+import clsx from "clsx";
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer";
-import clsx from "clsx";
 
 type Props = {
-  background?: string;
-  isFlush?: Boolean;
+  bgColor?: "dark" | "light" | "static";
 };
 
-const Layout: React.FC<PropsWithChildren<Props>> = ({
-  background,
-  isFlush = false,
-  children,
-}) => {
-  const [isNavInverted, setIsNavInverted] = useState(false); // nav state
+const Layout: React.FC<PropsWithChildren<Props>> = ({ bgColor, children }) => {
+  const [isNavInverted, setIsNavInverted] = useState(bgColor === "dark"); // nav state
 
-  // If background for page is black, isNavInverted nav color automatically
   useEffect(() => {
-    if (background === "black") {
-      setIsNavInverted(true);
-    }
-  }, [background]);
+    if (bgColor === "dark") setIsNavInverted(true);
+  }, [bgColor]);
 
   return (
     <>
-      <ParallaxProvider>
-        <div
-          className={clsx("layout-wrapper", `bg-${background}`, {
-            flush: isFlush,
-          })}
-        >
-          <Nav
-            isInverted={isNavInverted}
-            setIsInverted={(newState) => {
-              setIsNavInverted(newState);
-            }}
-          />
+      <div className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}>
+        <Nav
+          isInverted={isNavInverted}
+          setIsInverted={(newState) => {
+            setIsNavInverted(newState);
+          }}
+        />
 
-          <main>{children}</main>
+        <main>{children}</main>
 
-          <Footer />
-        </div>
-      </ParallaxProvider>
+        <Footer />
+      </div>
     </>
   );
 };

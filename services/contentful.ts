@@ -1,9 +1,26 @@
-import { CONTENT_TYPE, IEntry } from "@/types/__generated__/contentful";
+import {
+  CONTENT_TYPE,
+  IEntry,
+  IModel,
+  IPage,
+  IProject,
+  IQueue,
+  ISideBySide,
+  ITextBlock,
+} from "@/types/__generated__/contentful";
 import * as contentful from "contentful";
 
 const CONTENTFUL_SPACE = process.env.CONTENTFUL_SPACE_ID || "";
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN || "";
 
+type ContentTypeMap = {
+  Model: IModel;
+  page: IPage;
+  project: IProject;
+  queue: IQueue;
+  sideBySide: ISideBySide;
+  textBlock: ITextBlock;
+};
 class Contentful {
   private client: contentful.ContentfulClientApi;
 
@@ -27,10 +44,10 @@ class Contentful {
     });
   }
 
-  async getContentByHandle<T extends IEntry>(
-    handle: string,
-    contentType: CONTENT_TYPE
-  ): Promise<T | undefined> {
+  async getContentByHandle<C extends CONTENT_TYPE>(
+    contentType: C,
+    handle: string
+  ): Promise<ContentTypeMap[C] | undefined> {
     if (!handle) {
       throw new Error("no handle provided and is required.");
     }
@@ -43,7 +60,7 @@ class Contentful {
     });
 
     if (entries && entries.total && entries.items[0]) {
-      return entries.items[0] as T;
+      return entries.items[0] as ContentTypeMap[C];
     }
 
     throw new Error(`Error fetching model with handle: ${handle}`);

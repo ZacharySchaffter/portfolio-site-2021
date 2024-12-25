@@ -38,12 +38,9 @@ $footer-height: 150px;
 .layout-wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 100px;
+  padding-top: 0px;
   min-height: 100vh;
 
-  &.flush {
-    padding-top: unset;
-  }
   main {
     flex: 1 0 auto;
   }
@@ -53,7 +50,7 @@ $footer-height: 150px;
 // Backgrounds
 // ============
 
-.bg-black {
+.bg-dark {
   background-color: $black;
 }
 

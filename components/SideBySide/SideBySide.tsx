@@ -1,20 +1,28 @@
 import clsx from "clsx";
-import { parse } from "marked";
-import SocialMediaLinks from "components/SocialMediaLinks";
+import { marked } from "marked";
+import SocialMediaLinks from "@/components/SocialMediaLinks";
 import styles from "./SideBySide.module.scss";
-import SmartImage from "components/SmartImage";
+import SmartImage from "@/components/SmartImage";
 
-const SidebySide = ({
+type Props = {
+  title?: string;
+  description?: string;
+  imageURL?: string | null;
+  imageAspectRatio?: number;
+  showSocial?: boolean;
+  variant?: "light" | "dark";
+};
+
+const SidebySide: React.FC<Props> = ({
   title = "",
   description = "",
-  imageUrl = null,
+  imageURL = null,
   imageAspectRatio = 0, // defaults to square
   showSocial = false,
-  style = "light", // 'light', 'dark'
+  variant = "light", // 'light', 'dark'
 }) => {
-  console.log(imageAspectRatio);
   return (
-    <div className={clsx(styles["sbs"], styles[`sbs--style-${style}`])}>
+    <div className={clsx(styles["sbs"], styles[`sbs--style-${variant}`])}>
       <div className={clsx(styles["sbs__inner"])}>
         {/* COLUMN (CONTENT) */}
         <div className={clsx(styles["sbs-col"], styles["sbs-col--content"])}>
@@ -30,7 +38,9 @@ const SidebySide = ({
           {/* DESCRIPTION */}
           <div
             className={styles["sbs__description"]}
-            dangerouslySetInnerHTML={{ __html: parse(description) }}
+            dangerouslySetInnerHTML={{
+              __html: marked.parse(description),
+            }}
           />
 
           {/* SOCIAL MEDIA */}
@@ -43,6 +53,7 @@ const SidebySide = ({
         </div>
 
         {/* COLUMN (IMAGE) */}
+
         <div
           className={clsx(styles["sbs-col"], styles["sbs-col--image"])}
           style={
@@ -53,7 +64,7 @@ const SidebySide = ({
               : {}
           }
         >
-          <SmartImage src={imageUrl} layout="static" />
+          {imageURL && <SmartImage src={imageURL} layout="static" />}
         </div>
       </div>
     </div>

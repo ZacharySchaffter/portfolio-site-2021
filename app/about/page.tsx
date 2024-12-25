@@ -1,13 +1,15 @@
 import { ReactNode } from "react";
-import { getModelByHandle } from "@/utils/contentful";
+import contentful from "@/services/contentful";
 import SideBySide from "@/components/SideBySide/SideBySide";
+import { ISideBySide } from "@/types/__generated__/contentful";
+import Layout from "@/components/Layout";
 
 const AboutPage = async (): Promise<ReactNode> => {
-  let module;
+  let module: ISideBySide | undefined;
   try {
-    module = await getModelByHandle("sbs-about-me", "sideBySide");
+    module = await contentful.getContentByHandle("sideBySide", "sbs-about-me");
   } catch (err) {
-    console.log("error fetching about me module:", err);
+    console.log("error fetching sms-about-me module:", err);
     throw new Error("failed to retrieve about me module");
   }
 
@@ -20,22 +22,22 @@ const AboutPage = async (): Promise<ReactNode> => {
   const aspectRatio = width / height;
 
   return (
-    <div>
-      <>
-        {/* SEO TITLE */}
-        <h1 className="sr-only">About Me</h1>
+    <Layout bgColor="dark">
+      {/* SEO TITLE */}
+      <h1 className="sr-only">About Me</h1>
 
-        {/* CONTENT */}
+      {/* CONTENT */}
+      <div style={{ paddingTop: 100 }}>
         <SideBySide
           title={title}
           description={copyText}
-          imageUrl={imageSrc}
+          imageURL={imageSrc}
           imageAspectRatio={aspectRatio}
-          style={"dark"}
+          variant="dark"
           showSocial={showSocial}
         />
-      </>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

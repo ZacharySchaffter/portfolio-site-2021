@@ -6,13 +6,12 @@ import styles from "./Hero.module.scss";
 import useDimensions from "@/hooks/useDimensions";
 import SocialMediaLinks from "@/components/SocialMediaLinks";
 
-/**
- *
- * @param {*} distanceFromOrigin (negative value will fall off the line)
- * @param {*} origin
- * @param {*} target
- */
-const getPointOnLine = ([originX, originY], [targetX, targetY], distance) => {
+type CoordsTuple = [number, number];
+const getPointOnLine = (
+  [originX, originY]: CoordsTuple,
+  [targetX, targetY]: CoordsTuple,
+  distance: number
+): CoordsTuple => {
   const xlen = targetX - originX;
   const ylen = targetY - originY;
   const origDistance = Math.sqrt(Math.pow(xlen, 2) + Math.pow(ylen, 2));
@@ -20,9 +19,6 @@ const getPointOnLine = ([originX, originY], [targetX, targetY], distance) => {
   const ratio = distance / origDistance;
   const newX = xlen * ratio;
   const newY = ylen * ratio;
-
-  // const newX = originX + newXlen;
-  // const newY = originY + newYlen;
 
   return [newX, newY];
 };
@@ -65,12 +61,10 @@ const Hero: React.FC<Props> = ({
   const [[mouseX, mouseY], setMouseCoords] = useState([0, 0]);
   const [[centerX, centerY], setCenterCoords] = useState([0, 0]);
 
-  // Handler to capture mouse coords on mousemove
-  const handleMousemove = (e) => {
-    setMouseCoords([e.pageX, e.pageY]);
-  };
-
   useEffect(() => {
+    const handleMousemove = (e: MouseEvent) => {
+      setMouseCoords([e.pageX, e.pageY]);
+    };
     if (!ref.current) return;
     ref.current.addEventListener("mousemove", handleMousemove);
 
