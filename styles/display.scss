@@ -1,5 +1,5 @@
-@import "./grid";
-@import "./utils/breakpoints";
+@use "./grid";
+@use "./utils/breakpoints";
 
 // Carved out of bootstrap 5, display utilities based on the grid breakpoints
 

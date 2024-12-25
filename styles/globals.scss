@@ -1,12 +1,12 @@
-@import "./reset";
+@use "./reset";
 
 // Utilities
-@import "./accessibility";
-@import "./display";
-@import "./typography";
+@use "./accessibility";
+@use "./display";
+@use "./typography";
 
 // Elements
-@import "./buttons";
+@use "./buttons";
 
 html,
 body {

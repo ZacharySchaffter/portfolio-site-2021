@@ -1,5 +1,5 @@
 // Note: This file is prepended to all stylsheets via the next config.
 // This file shouldn't contain any actual style declarations, or else
 // they're be duplicated.
-@import "./variables/colors";
-@import "./variables/fonts";
+@use "./variables/colors";
+@use "./variables/fonts";
