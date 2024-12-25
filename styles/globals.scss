@@ -1,12 +1,13 @@
-@use "./reset";
+@use "reset" as *;
+@use "variables" as *;
 
 // Utilities
-@use "./accessibility";
-@use "./display";
-@use "./typography";
+@use "accessibility" as *;
+@use "display" as *;
+@use "typography" as *;
 
 // Elements
-@use "./buttons";
+@use "buttons" as *;
 
 html,
 body {

@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 $btn-gradient: linear-gradient(to right, $glitch1, $glitch2);
 $btn-border-width: 3px;
 
