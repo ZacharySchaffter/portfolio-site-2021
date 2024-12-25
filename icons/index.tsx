@@ -1,4 +1,9 @@
-export const Logo = ({ color = "#000" }) => (
+type IconComponentProps = {
+  color?: string;
+};
+type IconComponent = React.FC<IconComponentProps>;
+
+export const Logo: IconComponent = ({ color = "#000" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
     {/* Z */}
 
@@ -26,7 +31,7 @@ export const Logo = ({ color = "#000" }) => (
   </svg>
 );
 
-export const GitHub = ({ color = "#000" }) => (
+export const GitHub: IconComponent = ({ color = "#000" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g id="GitHub">
       <path
@@ -37,7 +42,7 @@ export const GitHub = ({ color = "#000" }) => (
   </svg>
 );
 
-export const Shapeways = ({ color = "#000" }) => (
+export const Shapeways: IconComponent = ({ color = "#000" }) => (
   <svg id="Shapeways" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <path
       fill={color}
@@ -46,7 +51,7 @@ export const Shapeways = ({ color = "#000" }) => (
   </svg>
 );
 
-export const CodePen = ({ color }) => (
+export const CodePen: IconComponent = ({ color }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g id="CodePen">
       <g>
@@ -87,7 +92,7 @@ export const CodePen = ({ color }) => (
   </svg>
 );
 
-export const LinkedIn = ({ color }) => (
+export const LinkedIn: IconComponent = ({ color }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <g id="Linkedin">
       <path
