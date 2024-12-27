@@ -25,7 +25,7 @@ const ModelGrid: React.FC<Props> = ({ title, items }) => {
 
       <div className={styles.grid}>
         {items.map((item) => (
-          <ModelGridItem {...item} />
+          <ModelGridItem key={`${item.title}-${item.imageURL}`} {...item} />
         ))}
       </div>
     </div>
