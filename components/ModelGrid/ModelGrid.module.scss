@@ -1,0 +1,33 @@
+.wrapper {
+  padding-left: 1rem;
+  padding-right:1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom:1.25rem;
+
+  h2 {
+    position: relative;
+    @include glitch-text($background: transparent,
+        $foreground: $black,
+        $color1: $glitch1,
+        $color2: $glitch2,
+        $offset: 5px);
+  }
+
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+
+.gridItem {
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
