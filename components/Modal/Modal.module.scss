@@ -1,0 +1,66 @@
+@use "sass:color";
+
+.wrapper {
+  position: relative;
+  z-index: 100;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: color.adjust(#000, $alpha: -0.25);
+  transition: opacity 250ms ease;
+
+  &[data-closed] {
+    opacity: 0;
+  }
+}
+
+.container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  background-color: #fff;
+  text-align: left;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  min-width: 300px;
+  max-width: 1000px;
+
+  &[data-closed] {
+    opacity: 0;
+  }
+}
+
+.modalHeader {
+}
+
+.closeButton {
+  aspect-ratio: 1;
+  cursor: pointer;
+  background-color: $black;
+  line-height: 0;
+  font-size: 1.25rem;
+  color: $white;
+  font-family: $font-family-sans-serif;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  transform: translate(50%, -50%);
+}

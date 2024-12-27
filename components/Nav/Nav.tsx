@@ -15,6 +15,7 @@ type Props = {
 const navItems = [
   { title: "Work", path: "/" },
   { title: "About", path: "/about" },
+  { title: "3D", path: "/models" },
 ];
 
 const Nav: React.FC<Props> = ({ isInverted, setIsInverted }) => {
@@ -34,24 +35,14 @@ const Nav: React.FC<Props> = ({ isInverted, setIsInverted }) => {
 
     // Intersection handler
     const onIntersect: IntersectionObserverCallback = (entries, observer) => {
-      let direction;
-      if (scrollRoot.scrollTop > prevScrollTop) {
-        direction = "down";
-      } else {
-        direction = "up";
-      }
+      let direction = scrollRoot.scrollTop > prevScrollTop ? "down" : "up";
       prevScrollTop = scrollRoot.scrollTop;
-
       const entry =
         direction === "up" ? entries[0] : entries[entries.length - 1];
-
       const node = entry.target;
 
-      // @ts-expect-error - TODO: debug why TS is whining about node.dataset
-      if (entry.isIntersecting && node.dataset.invertHeader === "true") {
-        setIsInverted(true);
-      } else {
-        setIsInverted(false);
+      if (node instanceof HTMLElement && entry.isIntersecting) {
+        setIsInverted(node.dataset.invertHeader == "true");
       }
     };
 

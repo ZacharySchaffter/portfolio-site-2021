@@ -1,0 +1,65 @@
+@use "variables" as *;
+@use "utils" as *;
+
+.wrapper {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+
+  h2 {
+    position: relative;
+    @include glitch-text(
+      $background: transparent,
+      $foreground: $black,
+      $color1: $glitch1,
+      $color2: $glitch2,
+      $offset: 5px
+    );
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gridItem {
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    line-height: 0;
+  }
+  picture {
+    display: block;
+    line-height: 0;
+  }
+}
+
+.gridItemTitle {
+  background-color: #000000;
+  font-family: $font-family-monospace;
+  display: inline-block;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.modalImage {
+  width: 100%;
+  img, picture {
+    width: 100%;
+  }
+}

@@ -19,12 +19,7 @@ const Layout: React.FC<PropsWithChildren<Props>> = ({ bgColor, children }) => {
   return (
     <body className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}>
       <div>
-        <Nav
-          isInverted={isNavInverted}
-          setIsInverted={(newState) => {
-            setIsNavInverted(newState);
-          }}
-        />
+        <Nav isInverted={isNavInverted} setIsInverted={setIsNavInverted} />
 
         <main>{children}</main>
 

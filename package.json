@@ -10,6 +10,7 @@
     "contentful-codegen": "contentful-typescript-codegen --output types/__generated__/contentful.d.ts"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "clsx": "^1.1.1",
     "contentful": "^9.1.4",
     "lodash.throttle": "^4.1.1",

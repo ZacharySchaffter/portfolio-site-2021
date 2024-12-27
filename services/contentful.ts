@@ -1,7 +1,8 @@
 import {
   CONTENT_TYPE,
-  IEntry,
-  IModel,
+  IHero,
+  IModel3D,
+  IModelGrid,
   IPage,
   IProject,
   IQueue,
@@ -14,13 +15,16 @@ const CONTENTFUL_SPACE = process.env.CONTENTFUL_SPACE_ID || "";
 const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN || "";
 
 type ContentTypeMap = {
-  Model: IModel;
+  hero: IHero;
+  model3d: IModel3D;
+  modelGrid: IModelGrid;
   page: IPage;
   project: IProject;
   queue: IQueue;
   sideBySide: ISideBySide;
   textBlock: ITextBlock;
 };
+
 class Contentful {
   private client: contentful.ContentfulClientApi;
 
