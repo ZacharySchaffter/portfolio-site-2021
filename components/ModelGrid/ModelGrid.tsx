@@ -1,6 +1,8 @@
-import clsx from "clsx";
+"use client";
+
 import SmartImage from "../SmartImage";
 import styles from "./ModelGrid.module.scss";
+import ModelGridItem from "./ModelGridItem";
 
 /** A 3D model project */
 type Model = {
@@ -23,13 +25,7 @@ const ModelGrid: React.FC<Props> = ({ title, items }) => {
 
       <div className={styles.grid}>
         {items.map((item) => (
-          <SmartImage
-            key={item.imageURL}
-            className={styles.gridItem}
-            width={400}
-            src={item.imageURL}
-            alt={item.title}
-          />
+          <ModelGridItem {...item} />
         ))}
       </div>
     </div>
