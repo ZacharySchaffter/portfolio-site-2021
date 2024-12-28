@@ -20,7 +20,12 @@ const ModelGridItem: React.FC<Props> = ({ title, imageURL }) => {
           setIsModalOpen(true);
         }}
       >
-        <SmartImage width={400} src={imageURL} alt={title} />
+        <SmartImage
+          width={400}
+          src={imageURL}
+          alt={title}
+          className={styles.gridItemImage}
+        />
         {title && <div className={styles.gridItemTitle}>{title}</div>}
       </div>
 
