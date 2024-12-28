@@ -1,6 +1,6 @@
 @use "sass:math";
 @use "sass:color";
-@use 'variables' as *;
+@use "variables" as *;
 
 $border-width: 6px;
 $spacing-v-mobile: 80px;
@@ -48,7 +48,9 @@ $bp-max: "sm";
   @include media-breakpoint-up($bp-min) {
     display: flex;
     flex-direction: row;
-    filter: Grayscale(var(--v-offset-grayscale)); // Wonky capitalization to avoid SCSS grayscale() method
+    filter: Grayscale(
+      var(--v-offset-grayscale)
+    ); // Wonky capitalization to avoid SCSS grayscale() method
   }
 
   .project--layout-right & {
@@ -58,7 +60,6 @@ $bp-max: "sm";
 
 .project__copy,
 .project__media {
-
   // transform: translateY(var(--v-offset-content));
   @include media-breakpoint-up($bp-min) {
     flex-basis: 40%;
@@ -85,18 +86,22 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
     font-size: 50px;
   }
 
-  @include glitch-text($foreground: $black,
-    $background: color.adjust(white, $alpha:-0.9),
+  @include glitch-text(
+    $foreground: $black,
+    $background: color.adjust(white, $alpha: -0.9),
     $color1: $glitch1,
     $color2: $glitch2,
-    $offset: 10px);
+    $offset: 10px
+  );
 
   .project--style-dark & {
-    @include glitch-text($foreground: $white,
+    @include glitch-text(
+      $foreground: $white,
       $background: $black,
       $color1: $glitch1,
       $color2: $glitch2,
-      $offset: $glitch-offset );
+      $offset: $glitch-offset
+    );
   }
 
   // Stagger the glitch animations on the pseudo elements
@@ -104,7 +109,6 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
 
   @for $i from 1 to $steps {
     .project:nth-child(#{$i}) & {
-
       &:before,
       &:after {
         animation-duration: $glitch-anim-duration;
@@ -204,8 +208,14 @@ $glitch-anim-duration: 6s; // make this glitch a bit slower to as to not be obno
       }
 
       @include media-breakpoint-up($bp-min) {
-        transform: translateY(var(--v-offset-bg));
+        transform: translateY(var(--v-offset-bg)) scale(1);
+        transition: transform 100ms ease-out;
       }
+    }
+
+    &:hover:before {
+      transform: translateY(calc(10px + var(--v-offset-bg))) scaleX(1.05);
+      transform: transform 150ms ease-in;
     }
   }
 
