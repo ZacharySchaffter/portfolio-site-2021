@@ -1,16 +1,11 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import styles from "./Nav.module.scss";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/icons";
-
-type Props = {
-  isInverted: boolean;
-  setIsInverted: (state: boolean) => void;
-};
 
 const navItems = [
   { title: "Work", path: "/" },
@@ -18,7 +13,8 @@ const navItems = [
   { title: "3D", path: "/models" },
 ];
 
-const Nav: React.FC<Props> = ({ isInverted, setIsInverted }) => {
+const Nav: React.FC = () => {
+  const [isInverted, setIsInverted] = useState(false);
   const pathname = usePathname();
   const observer = useRef<IntersectionObserver>(null);
 

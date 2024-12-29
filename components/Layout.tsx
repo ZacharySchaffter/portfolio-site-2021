@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useState, PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
 import clsx from "clsx";
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer";
@@ -10,22 +8,15 @@ type Props = {
 };
 
 const Layout: React.FC<PropsWithChildren<Props>> = ({ bgColor, children }) => {
-  const [isNavInverted, setIsNavInverted] = useState(bgColor === "dark"); // nav state
-
-  useEffect(() => {
-    if (bgColor === "dark") setIsNavInverted(true);
-  }, [bgColor]);
-
   return (
-    <body className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}>
-      <div>
-        <Nav isInverted={isNavInverted} setIsInverted={setIsNavInverted} />
-
-        <main>{children}</main>
-
-        <Footer />
-      </div>
-    </body>
+    <div
+      className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}
+      data-invert-header={bgColor === "dark"}
+    >
+      <Nav />
+      <main>{children}</main>
+      <Footer />
+    </div>
   );
 };
 
