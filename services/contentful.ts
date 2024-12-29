@@ -28,23 +28,19 @@ type ContentTypeMap = {
 class Contentful {
   private client: contentful.ContentfulClientApi;
 
-  constructor(
-    private readonly space: string,
-    private readonly accessToken: string
-  ) {
+  constructor(space: string, accessToken: string) {
     if (!space) {
       throw new Error("contentful space id not provided and is required");
     }
-    this.space = space;
+
     if (!accessToken) {
       throw new Error("contentful access token not provided and is required");
     }
-    this.accessToken = accessToken;
 
     // Create contentful client with space/token
     this.client = contentful.createClient({
-      space: space,
-      accessToken: accessToken,
+      space,
+      accessToken,
     });
   }
 
