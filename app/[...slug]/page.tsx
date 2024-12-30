@@ -37,7 +37,7 @@ const DynamicPage = async ({
   return (
     <Layout bgColor={page.fields.backgroundColor}>
       {page.fields.sections?.map((section) => (
-        <SectionRenderer module={section} />
+        <SectionRenderer key={section.sys.id} module={section} />
       ))}
     </Layout>
   );

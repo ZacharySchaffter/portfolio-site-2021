@@ -10,18 +10,7 @@ export const metadata: Metadata = {
   title: "Zachary Schaffter | Frontend Software Engineer",
 };
 
-export async function generateStaticParams() {
-  const pages = await contentful.getAllContent("page");
-  return pages?.map((entry) => ({
-    slug: entry.fields.slug?.split("/"),
-  }));
-}
-
-const DynamicPage = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<ReactNode> => {
+const HomePage = async (): Promise<ReactNode> => {
   let page: IPage;
   try {
     page = await contentful.getPageBySlug("/");
@@ -33,10 +22,10 @@ const DynamicPage = async ({
   return (
     <Layout bgColor={page.fields.backgroundColor}>
       {page.fields.sections?.map((section) => (
-        <SectionRenderer module={section} />
+        <SectionRenderer key={section.sys.id} module={section} />
       ))}
     </Layout>
   );
 };
 
-export default DynamicPage;
+export default HomePage;
