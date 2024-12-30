@@ -95,6 +95,7 @@ const Hero: React.FC<Props> = ({
         "--bg-offset-x": offsetX + "px",
         "--bg-offset-y": Math.min(offsetY, 70) + "px",
       }}
+      data-invert-header="false"
     >
       {/* SEO TITLE (Invisible, text that renders is an SVG)  */}
       <h2 className={clsx([styles["hero-title"], "sr-only"])}>{title}</h2>

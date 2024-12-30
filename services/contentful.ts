@@ -52,12 +52,6 @@ class Contentful {
     contentType: C,
     handle: string
   ): Promise<ContentTypeMap[C] | undefined> {
-    if (!handle) {
-      throw new Error("no handle provided and is required.");
-    }
-    if (!contentType) {
-      throw new Error("no contentType provided and is required.");
-    }
     const entries = await this.client.getEntries({
       content_type: contentType,
       "fields.handle": handle,
@@ -70,14 +64,32 @@ class Contentful {
     throw new Error(`Error fetching model with handle: ${handle}`);
   }
 
-  /**
-   * Fetch a single page from C7ontentful
-   * @returns {Object, undefined}
-   */
-  async getPage() {
-    const entries = await this.client.getEntries();
-    if (entries.items) return entries.items;
-    console.log(`Error getting entries for.`);
+  async getAllContent<C extends CONTENT_TYPE>(
+    contentType: C
+  ): Promise<ContentTypeMap[C][] | undefined> {
+    const entries = await this.client.getEntries({
+      content_type: contentType,
+    });
+
+    if (entries) {
+      return entries.items as ContentTypeMap[C][];
+    }
+
+    throw new Error(`error fetching content with type "${contentType}"`);
+  }
+
+  async getPageBySlug(slug: string): Promise<IPage> {
+    const entries = await this.client.getEntries<IPage>({
+      content_type: "page",
+      "fields.slug": slug,
+      include: 5,
+    });
+
+    if (entries && entries.total > 0 && entries.items[0]) {
+      return entries.items[0] as IPage;
+    }
+
+    throw new Error(`failed to retrieve page with slug "${slug}"`);
   }
 }
 

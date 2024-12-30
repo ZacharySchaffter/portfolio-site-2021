@@ -52,6 +52,7 @@ const FeaturedProject: React.FC<Props> = ({
                 ? Math.min(center.percent, 1) * 30 + 10 + "px"
                 : undefined,
             }}
+            data-invert-header={variant === "dark"}
           >
             <div className={styles["project__inner"]}>
               {/* COPY */}

@@ -22,11 +22,15 @@ const DynamicPage = async ({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<ReactNode> => {
+  const asyncSlug =
+    "/" + ((await params).slug as unknown as string[])?.join("/");
+  console.log("slug:", asyncSlug);
+
   let page: IPage;
   try {
-    page = await contentful.getPageBySlug("/");
+    page = await contentful.getPageBySlug(asyncSlug);
   } catch (err) {
-    console.error(`error fetching homepage`);
+    console.error(`error fetching page: ${asyncSlug}`);
     return notFound();
   }
 
