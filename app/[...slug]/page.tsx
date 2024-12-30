@@ -24,7 +24,6 @@ const DynamicPage = async ({
 }): Promise<ReactNode> => {
   const asyncSlug =
     "/" + ((await params).slug as unknown as string[])?.join("/");
-  console.log("slug:", asyncSlug);
 
   let page: IPage;
   try {
