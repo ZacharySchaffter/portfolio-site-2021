@@ -7,12 +7,6 @@ import styles from "./Nav.module.scss";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/icons";
 
-const navItems = [
-  { label: "Work", link: "/" },
-  { label: "About", link: "/about" },
-  { label: "3D", link: "/models" },
-];
-
 type NavItem = {
   label: string;
   link: string;
