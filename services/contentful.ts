@@ -79,7 +79,7 @@ class Contentful {
   }
 
   async getPageBySlug(slug: string): Promise<IPage> {
-    const entries = await this.client.getEntries<IPage>({
+    const entries = await this.client.getEntries({
       content_type: "page",
       "fields.slug": slug,
       include: 5,

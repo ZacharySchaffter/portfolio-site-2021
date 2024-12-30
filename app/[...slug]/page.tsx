@@ -12,9 +12,11 @@ export const metadata: Metadata = {
 
 export async function generateStaticParams() {
   const pages = await contentful.getAllContent("page");
-  return pages?.map((entry) => ({
-    slug: entry.fields.slug?.split("/"),
-  }));
+  return (
+    pages?.map((entry) => ({
+      slug: entry.fields.slug?.split("/"),
+    })) || []
+  );
 }
 
 const DynamicPage = async ({
