@@ -1,3 +1,4 @@
+@use "sass:map";
 $spacing: 20px;
 $bp-min: "md";
 
@@ -8,7 +9,7 @@ $bp-min: "md";
   padding-right: $spacing;
   margin-right: auto;
   margin-left: auto;
-
+  max-width: map.get($grid-breakpoints, "xl");
   &--style-dark {
     color: $white;
     background-color: $black;
@@ -51,7 +52,6 @@ $bp-min: "md";
   }
 
   &--image {
-    padding: unset;
     filter: grayscale(1);
     picture,
     img {

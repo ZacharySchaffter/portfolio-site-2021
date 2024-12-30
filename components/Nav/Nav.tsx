@@ -1,24 +1,29 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import styles from "./Nav.module.scss";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/icons";
 
-type Props = {
-  isInverted: boolean;
-  setIsInverted: (state: boolean) => void;
-};
-
 const navItems = [
-  { title: "Work", path: "/" },
-  { title: "About", path: "/about" },
-  { title: "3D", path: "/models" },
+  { label: "Work", link: "/" },
+  { label: "About", link: "/about" },
+  { label: "3D", link: "/models" },
 ];
 
-const Nav: React.FC<Props> = ({ isInverted, setIsInverted }) => {
+type NavItem = {
+  label: string;
+  link: string;
+};
+
+type Props = {
+  items: NavItem[];
+};
+
+const Nav: React.FC<Props> = ({ items }) => {
+  const [isInverted, setIsInverted] = useState(false);
   const pathname = usePathname();
   const observer = useRef<IntersectionObserver>(null);
 
@@ -80,12 +85,12 @@ const Nav: React.FC<Props> = ({ isInverted, setIsInverted }) => {
     >
       <nav>
         <ul className="list-unstyled">
-          {navItems.map((item, i) => (
+          {items.map((item, i) => (
             <li
               key={i}
-              className={clsx({ [styles["active"]]: pathname === item.path })}
+              className={clsx({ [styles["active"]]: pathname === item.link })}
             >
-              <Link href={item.path}>{item.title}</Link>
+              <Link href={item.link}>{item.label}</Link>
             </li>
           ))}
         </ul>

@@ -1,31 +1,46 @@
-"use client";
-
-import { useEffect, useState, PropsWithChildren } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import clsx from "clsx";
 import Nav from "@/components/Nav/Nav";
 import Footer from "@/components/Footer";
+import contentful from "@/services/contentful";
 
 type Props = {
   bgColor?: "dark" | "light" | "static";
 };
 
-const Layout: React.FC<PropsWithChildren<Props>> = ({ bgColor, children }) => {
-  const [isNavInverted, setIsNavInverted] = useState(bgColor === "dark"); // nav state
+const getNavItems = async () => {
+  try {
+    const res = await contentful.getContentByHandle(
+      "navigationMenu",
+      "header-nav"
+    );
+    return (
+      res?.fields?.items?.map((item) => ({
+        label: item.fields.label,
+        link: item.fields.link,
+      })) || []
+    );
+  } catch (err) {
+    console.error("error fetching header-nav from cms");
+  }
+  return [];
+};
 
-  useEffect(() => {
-    if (bgColor === "dark") setIsNavInverted(true);
-  }, [bgColor]);
+const Layout = async ({
+  bgColor,
+  children,
+}: PropsWithChildren<Props>): Promise<ReactNode> => {
+  const navItems = await getNavItems();
 
   return (
-    <body className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}>
-      <div>
-        <Nav isInverted={isNavInverted} setIsInverted={setIsNavInverted} />
-
-        <main>{children}</main>
-
-        <Footer />
-      </div>
-    </body>
+    <div
+      className={clsx("layout-wrapper", bgColor && `bg-${bgColor}`)}
+      data-invert-header={bgColor === "dark"}
+    >
+      <Nav items={navItems} />
+      <main>{children}</main>
+      <Footer />
+    </div>
   );
 };
 
