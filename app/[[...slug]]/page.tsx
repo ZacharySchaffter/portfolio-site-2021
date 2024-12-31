@@ -36,9 +36,6 @@ const DynamicPage = async ({
     return notFound();
   }
 
-  const pages = await contentful.getAllContent("page");
-  console.log(pages?.map((p) => trim(p.fields.slug, "/").split("/")));
-
   return (
     <Layout bgColor={page.fields.backgroundColor}>
       {page.fields.sections?.map((section) => (
