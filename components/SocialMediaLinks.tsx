@@ -12,19 +12,20 @@ const socialMedia = [
     name: "GitHub",
     icon: Icons.GitHub,
     url: "https://github.com/zacharyschaffter",
-    description: "Go ahead, creep on my code",
+    description: "",
   },
-  {
-    name: "Shapeways",
-    icon: Icons.Shapeways,
-    url: "https://www.shapeways.com/shops/robozack",
-    description: "Some of my 3D Prints",
-  },
+  // Shapeways went bankrupt, so is no longer a valid platform
+  // {
+  //   name: "Shapeways",
+  //   icon: Icons.Shapeways,
+  //   url: "https://www.shapeways.com/shops/robozack",
+  //   description: "Some of my 3D Prints",
+  // },
   {
     name: "LinkedIn",
     icon: Icons.LinkedIn,
     url: "https://www.linkedin.com/in/zachary-schaffter/",
-    description: "Let's connect!",
+    description: "Let's connect, just don't expect me to post",
   },
 ];
 

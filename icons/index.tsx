@@ -102,11 +102,3 @@ export const LinkedIn: IconComponent = ({ color }) => (
     </g>
   </svg>
 );
-
-export default {
-  Logo,
-  CodePen,
-  GitHub,
-  LinkedIn,
-  Shapeways,
-};
