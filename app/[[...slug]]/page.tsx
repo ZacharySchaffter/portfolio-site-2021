@@ -7,8 +7,9 @@ import { IPage } from "@/types/__generated__/contentful";
 import { notFound } from "next/navigation";
 import trim from "lodash/trim";
 
-export const metadata: Metadata = {
-  title: "Zachary Schaffter | Frontend Software Engineer",
+type Props = {
+  params: Promise<{ slug: string[] }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateStaticParams() {
@@ -20,24 +21,44 @@ export async function generateStaticParams() {
   );
 }
 
-const DynamicPage = async ({
+async function getPageData(slug: string[]): Promise<IPage> {
+  try {
+    const page = await contentful.getPageBySlug(
+      slug ? "/" + slug.join("/") : "/"
+    );
+    return page;
+  } catch (err) {
+    throw new Error(`error fetching page with slug: ${slug.join("/")}`, {
+      cause: err,
+    });
+  }
+}
+
+export async function generateMetadata({
   params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<ReactNode> => {
-  const asyncSlug = (await params).slug as unknown as string[];
+}: Props): Promise<Metadata | undefined> {
+  try {
+    const page = await getPageData((await params).slug);
+    if (page.fields.metaTitle || page.fields.metaDescription) {
+      const meta: Metadata = {};
+      if (page.fields.metaTitle) meta.title = page.fields.metaTitle;
+      if (page.fields.metaDescription) meta.title = page.fields.metaDescription;
+      return meta;
+    }
+  } catch (err) {
+    // do nothing - default in layout will set the meta
+  }
+}
+
+const DynamicPage = async ({ params }: Props): Promise<ReactNode> => {
   let page: IPage;
   try {
-    page = await contentful.getPageBySlug(
-      asyncSlug ? "/" + asyncSlug.join("/") : "/"
-    );
+    page = await getPageData((await params).slug);
   } catch (err) {
-    console.error(`error fetching page: ${asyncSlug}`);
+    console.error("error fetching page data:");
+    console.error(err);
     return notFound();
   }
-
-  const pages = await contentful.getAllContent("page");
-  console.log(pages?.map((p) => trim(p.fields.slug, "/").split("/")));
 
   return (
     <Layout bgColor={page.fields.backgroundColor}>
